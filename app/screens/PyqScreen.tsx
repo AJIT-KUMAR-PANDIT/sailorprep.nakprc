@@ -1,3 +1,4 @@
+import nakprcLogo from "../welcome/logo.webp";
 import { Anchor, Bell, BookOpen, BadgeCheck, Star, ArrowUpRight, Flame, ChevronDown, FileText, HelpCircle, Ship, Scale, Home, ClipboardList, Bookmark, User } from "lucide-react";
 import BottomNav from "../components/BottomNav";
 import { Link } from "react-router";
@@ -15,7 +16,12 @@ export default function PyqScreen() {
         <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md pt-safe border-b border-outline-variant/30">
           <div className="flex items-center gap-3">
             <Anchor className="text-primary" style={{ fontVariationSettings: filled }} />
-            <span className="font-headline-md text-headline-md font-bold text-primary">Sailor Prep</span>
+            <div className="flex flex-col">
+        <span className="font-headline-md text-headline-md font-bold text-primary">Sailor Prep</span>
+        <div className="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium mt-0.5">
+          A Product of <img src={nakprcLogo} alt="NAKPRC Logo" className="h-3 w-auto object-contain" /> NAKPRC
+        </div>
+      </div>
           </div>
           <div className="flex items-center">
             <button className="p-2 rounded-full hover:bg-surface-container-low text-on-surface-variant transition-colors active:scale-95 duration-200 ease-in-out">

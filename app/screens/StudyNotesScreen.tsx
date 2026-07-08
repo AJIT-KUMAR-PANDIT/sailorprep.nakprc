@@ -1,3 +1,4 @@
+import nakprcLogo from "../welcome/logo.webp";
 import { Anchor, Bell, Ship, Smile, Heart, Frown, Home, ClipboardList, BookOpen, Bookmark as BookmarkIcon, User } from "lucide-react";
 import BottomNav from "../components/BottomNav";
 
@@ -11,7 +12,12 @@ export default function StudyNotesScreen() {
           <button className="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all active:scale-95 duration-200 ease-in-out flex items-center justify-center">
             <Anchor className="text-[24px]" />
           </button>
-          <h1 className="text-headline-md font-headline-md font-bold text-primary">Sailor Prep</h1>
+          <div className="flex flex-col">
+        <h1 className="text-headline-md font-headline-md font-bold text-primary">Sailor Prep</h1>
+        <div className="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium mt-0.5">
+          A Product of <img src={nakprcLogo} alt="NAKPRC Logo" className="h-3 w-auto object-contain" /> NAKPRC
+        </div>
+      </div>
           <button className="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all active:scale-95 duration-200 ease-in-out flex items-center justify-center">
             <Bell className="text-[24px]" />
           </button>

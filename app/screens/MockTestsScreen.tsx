@@ -1,3 +1,4 @@
+import nakprcLogo from "../welcome/logo.webp";
 import { Anchor, Bell, LifeBuoy, Globe, Ship, Clock, BookOpen } from "lucide-react";
 import BottomNav from "../components/BottomNav";
 
@@ -10,7 +11,12 @@ export default function MockTestsScreen() {
           <button aria-label="Menu" className="flex items-center justify-center p-2.5 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
             <Anchor className="text-[24px]" style={{ fontVariationSettings: '"FILL" 0' }} />
           </button>
-          <h1 className="font-headline-md text-headline-md font-bold text-primary tracking-tight">Sailor Prep</h1>
+          <div className="flex flex-col">
+        <h1 className="font-headline-md text-headline-md font-bold text-primary tracking-tight">Sailor Prep</h1>
+        <div className="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium mt-0.5">
+          A Product of <img src={nakprcLogo} alt="NAKPRC Logo" className="h-3 w-auto object-contain" /> NAKPRC
+        </div>
+      </div>
           <button aria-label="Notifications" className="flex items-center justify-center p-2.5 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors relative">
             <Bell className="text-[24px]" />
             <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface" />

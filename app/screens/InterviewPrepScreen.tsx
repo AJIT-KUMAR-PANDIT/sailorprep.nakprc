@@ -1,3 +1,4 @@
+import nakprcLogo from "../welcome/logo.webp";
 import { Anchor, Home, ClipboardList, BookOpen, Bookmark, User, Bell, BadgeCheck, Timer, Shield, Mic, AlertTriangle, Ship, CircleDot } from "lucide-react";
 import BottomNav from "../components/BottomNav";
 import { Link } from "react-router";
@@ -16,7 +17,12 @@ export default function InterviewPrepScreen() {
             <button className="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors flex items-center justify-center">
               <Anchor className="text-[24px]" style={{ fontVariationSettings: filled }} />
             </button>
-            <h1 className="text-headline-md font-headline-md font-bold text-on-surface tracking-tight">Sailor Prep</h1>
+            <div className="flex flex-col">
+        <h1 className="text-headline-md font-headline-md font-bold text-on-surface tracking-tight">Sailor Prep</h1>
+        <div className="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium mt-0.5">
+          A Product of <img src={nakprcLogo} alt="NAKPRC Logo" className="h-3 w-auto object-contain" /> NAKPRC
+        </div>
+      </div>
           </div>
           {/* Desktop Nav Items */}
           <nav className="hidden md:flex gap-6 items-center">
