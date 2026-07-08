@@ -1,3 +1,4 @@
+import { Anchor, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 
 export default function WelcomeScreen() {
@@ -19,9 +20,8 @@ export default function WelcomeScreen() {
       <div className="mb-10 relative group">
         <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-all duration-500 scale-110" />
         <div className="w-32 h-32 md:w-36 md:h-36 rounded-full glass-panel flex items-center justify-center relative z-10">
-          <span className="material-symbols-outlined text-primary text-6xl md:text-7xl" style={{fontVariationSettings: '"FILL" 1'}}>
-            sailing
-          </span>
+          <div className="absolute inset-2 rounded-full border border-primary/30 animate-spin-slow" />
+          <Anchor className=" text-primary text-6xl md:text-7xl" />
         </div>
       </div>
       <div className="space-y-4 mb-12 glass-panel p-8 rounded-3xl w-full">
@@ -35,9 +35,7 @@ export default function WelcomeScreen() {
       <div className="w-full flex flex-col space-y-4">
         <Link to="/batches" className="w-full bg-primary hover:bg-surface-tint text-on-primary font-label-md text-label-md py-4 px-6 rounded-xl shadow-lg shadow-primary/20 transition-all duration-300 flex items-center justify-center space-x-2 animate-pulse-glow hover:scale-[1.02]">
           <span>Set Sail</span>
-          <span className="material-symbols-outlined text-[18px]">
-            arrow_forward
-          </span>
+          <ArrowRight className=" text-[18px]" />
         </Link>
         <Link to="/batches" className="w-full text-center glass-panel hover:bg-surface-container-low text-primary font-label-md text-label-md py-4 px-6 rounded-xl transition-all duration-200">
           Log In

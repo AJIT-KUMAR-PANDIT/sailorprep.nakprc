@@ -1,3 +1,4 @@
+import { Anchor, Bell, HelpCircle, Ship } from "lucide-react";
 import BottomNav from "../components/BottomNav";
 import { Link } from "react-router";
 
@@ -7,11 +8,11 @@ export default function MockTestsScreen() {
       <div>
   <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-[72px] bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl border-b border-white/30 dark:border-outline-variant/20 shadow-sm">
     <button aria-label="Menu" className="flex items-center justify-center p-2.5 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
-      <span className="material-symbols-outlined" data-icon="anchor" style={{fontVariationSettings: '"FILL" 0'}}>anchor</span>
+      <Anchor className="" data-icon="anchor" />
     </button>
     <h1 className="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim tracking-tight">Sailor Prep</h1>
     <button aria-label="Notifications" className="flex items-center justify-center p-2.5 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors relative">
-      <span className="material-symbols-outlined" data-icon="notifications" style={{fontVariationSettings: '"FILL" 0'}}>notifications</span>
+      <Bell className="" data-icon="notifications" />
       <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface" />
     </button>
   </header>
@@ -31,7 +32,7 @@ export default function MockTestsScreen() {
         <div>
           <div className="flex justify-between items-start mb-5">
             <div className="p-3.5 bg-secondary-container/80 backdrop-blur-sm rounded-xl text-on-secondary-container shadow-inner">
-              <span className="material-symbols-outlined">health_and_safety</span>
+              <HelpCircle className="" />
             </div>
             <span className="px-3 py-1.5 bg-tertiary-container/10 border border-tertiary-container/20 rounded-full font-label-sm text-label-sm text-tertiary font-bold tracking-wide">MEDIUM</span>
           </div>
@@ -41,10 +42,10 @@ export default function MockTestsScreen() {
         <div className="space-y-5 mt-auto">
           <div className="flex items-center gap-5 text-on-surface-variant font-label-md text-label-md">
             <div className="flex items-center gap-1.5 bg-surface-container-low/50 px-2.5 py-1 rounded-md">
-              <span className="material-symbols-outlined text-[18px]">schedule</span> 30m
+              <HelpCircle className=" text-[18px]" /> 30m
             </div>
             <div className="flex items-center gap-1.5 bg-surface-container-low/50 px-2.5 py-1 rounded-md">
-              <span className="material-symbols-outlined text-[18px]">help</span> 50 Qs
+              <HelpCircle className=" text-[18px]" /> 50 Qs
             </div>
           </div>
           <Link className="w-full py-3.5 bg-primary text-on-primary rounded-xl font-label-md text-label-md font-bold shadow-md hover:shadow-lg hover:bg-surface-tint transition-all active:scale-95 duration-200" to="/mock-tests">Take Test</Link>
@@ -54,7 +55,7 @@ export default function MockTestsScreen() {
         <div>
           <div className="flex justify-between items-start mb-5">
             <div className="p-3.5 bg-secondary-container/80 backdrop-blur-sm rounded-xl text-on-secondary-container shadow-inner">
-              <span className="material-symbols-outlined">satellite_alt</span>
+              <HelpCircle className="" />
             </div>
             <span className="px-3 py-1.5 bg-error/10 border border-error/20 rounded-full font-label-sm text-label-sm text-error font-bold tracking-wide">HARD</span>
           </div>
@@ -64,10 +65,10 @@ export default function MockTestsScreen() {
         <div className="space-y-5 mt-auto">
           <div className="flex items-center gap-5 text-on-surface-variant font-label-md text-label-md">
             <div className="flex items-center gap-1.5 bg-surface-container-low/50 px-2.5 py-1 rounded-md">
-              <span className="material-symbols-outlined text-[18px]">schedule</span> 45m
+              <HelpCircle className=" text-[18px]" /> 45m
             </div>
             <div className="flex items-center gap-1.5 bg-surface-container-low/50 px-2.5 py-1 rounded-md">
-              <span className="material-symbols-outlined text-[18px]">help</span> 60 Qs
+              <HelpCircle className=" text-[18px]" /> 60 Qs
             </div>
           </div>
           <Link className="w-full py-3.5 bg-primary text-on-primary rounded-xl font-label-md text-label-md font-bold shadow-md hover:shadow-lg hover:bg-surface-tint transition-all active:scale-95 duration-200" to="/mock-tests">Take Test</Link>
@@ -77,7 +78,7 @@ export default function MockTestsScreen() {
         <div>
           <div className="flex justify-between items-start mb-5">
             <div className="p-3.5 bg-secondary-container/80 backdrop-blur-sm rounded-xl text-on-secondary-container shadow-inner">
-              <span className="material-symbols-outlined">directions_boat</span>
+              <Ship className="" />
             </div>
             <span className="px-3 py-1.5 bg-tertiary-container/10 border border-tertiary-container/20 rounded-full font-label-sm text-label-sm text-tertiary font-bold tracking-wide">MEDIUM</span>
           </div>
@@ -87,10 +88,10 @@ export default function MockTestsScreen() {
         <div className="space-y-5 mt-auto">
           <div className="flex items-center gap-5 text-on-surface-variant font-label-md text-label-md">
             <div className="flex items-center gap-1.5 bg-surface-container-low/50 px-2.5 py-1 rounded-md">
-              <span className="material-symbols-outlined text-[18px]">schedule</span> 40m
+              <HelpCircle className=" text-[18px]" /> 40m
             </div>
             <div className="flex items-center gap-1.5 bg-surface-container-low/50 px-2.5 py-1 rounded-md">
-              <span className="material-symbols-outlined text-[18px]">help</span> 50 Qs
+              <HelpCircle className=" text-[18px]" /> 50 Qs
             </div>
           </div>
           <Link className="w-full py-3.5 bg-primary text-on-primary rounded-xl font-label-md text-label-md font-bold shadow-md hover:shadow-lg hover:bg-surface-tint transition-all active:scale-95 duration-200" to="/mock-tests">Take Test</Link>

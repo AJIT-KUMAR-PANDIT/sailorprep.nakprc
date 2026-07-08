@@ -1,3 +1,4 @@
+import { Anchor, Bell, Flame, HelpCircle, ArrowRight, ChevronRight } from "lucide-react";
 import BottomNav from "../components/BottomNav";
 import { Link } from "react-router";
 
@@ -7,7 +8,7 @@ export default function BatchesScreen() {
       <div>
   <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md border-b border-outline-variant/30 dark:border-outline/20">
     <div className="flex items-center gap-4">
-      <span className="material-symbols-outlined text-primary dark:text-primary-fixed-dim" style={{fontVariationSettings: '"FILL" 1'}}>anchor</span>
+      <Anchor className=" text-primary dark:text-primary-fixed-dim" />
       <span className="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim tracking-tight">Sailor Prep</span>
     </div>
     <div className="flex items-center gap-4">
@@ -20,7 +21,7 @@ export default function BatchesScreen() {
         <Link  className="text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low px-3 py-2 rounded-lg transition-colors" to="/my-progress">Profile</Link>
       </nav>
       <button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant">
-        <span className="material-symbols-outlined">notifications</span>
+        <Bell className="" />
       </button>
     </div>
   </header>
@@ -39,7 +40,7 @@ export default function BatchesScreen() {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
       <div className="lg:col-span-8 bg-surface-container-lowest border border-outline-variant/20 rounded-2xl overflow-hidden group premium-card relative flex flex-col md:flex-row h-full">
         <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md text-error font-label-sm text-label-sm px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm border border-error/10">
-          <span className="material-symbols-outlined text-[14px] text-error">local_fire_department</span>
+          <Flame className=" text-[14px] text-error" />
           Only 5 seats left!
         </div>
         <div className="md:w-5/12 h-56 md:h-auto relative overflow-hidden bg-surface-variant shrink-0">
@@ -60,7 +61,7 @@ export default function BatchesScreen() {
             <div className="grid grid-cols-2 gap-y-5 gap-x-4 mb-8">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-secondary text-[20px]">calendar_month</span>
+                  <HelpCircle className=" text-secondary text-[20px]" />
                 </div>
                 <div>
                   <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Starts</span>
@@ -69,7 +70,7 @@ export default function BatchesScreen() {
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-secondary text-[20px]">schedule</span>
+                  <HelpCircle className=" text-secondary text-[20px]" />
                 </div>
                 <div>
                   <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Duration</span>
@@ -78,7 +79,7 @@ export default function BatchesScreen() {
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-secondary text-[20px]">co_present</span>
+                  <HelpCircle className=" text-secondary text-[20px]" />
                 </div>
                 <div>
                   <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Mode</span>
@@ -87,7 +88,7 @@ export default function BatchesScreen() {
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0">
-                  <span className="material-symbols-outlined text-secondary text-[20px]">school</span>
+                  <HelpCircle className=" text-secondary text-[20px]" />
                 </div>
                 <div>
                   <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Instructor</span>
@@ -98,7 +99,7 @@ export default function BatchesScreen() {
           </div>
           <button className="w-full bg-primary text-white font-label-md text-[15px] font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex justify-center items-center gap-2 group-hover:bg-primary-container group-hover:text-on-primary-container btn-pro-pulse">
             Enroll Now
-            <span className="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1.5">arrow_forward</span>
+            <ArrowRight className=" text-[20px] transition-transform group-hover:translate-x-1.5" />
           </button>
         </div>
       </div>
@@ -118,51 +119,51 @@ export default function BatchesScreen() {
             <div>
               <span className="block font-label-sm text-[10px] text-outline uppercase tracking-wider mb-1">Starts</span>
               <span className="font-label-md text-[14px] font-semibold text-on-surface flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[18px] text-primary">event</span> June 15
+                <HelpCircle className=" text-[18px] text-primary" /> June 15
               </span>
             </div>
             <div>
               <span className="block font-label-sm text-[10px] text-outline uppercase tracking-wider mb-1">Duration</span>
               <span className="font-label-md text-[14px] font-semibold text-on-surface flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[18px] text-primary">schedule</span> 4 Months
+                <HelpCircle className=" text-[18px] text-primary" /> 4 Months
               </span>
             </div>
             <div className="col-span-2">
               <span className="block font-label-sm text-[10px] text-outline uppercase tracking-wider mb-1">Instructor</span>
               <span className="font-label-md text-[14px] font-semibold text-on-surface flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[18px] text-primary">school</span> Capt. V. Kumar
+                <HelpCircle className=" text-[18px] text-primary" /> Capt. V. Kumar
               </span>
             </div>
           </div>
           <div className="flex items-center justify-between mt-auto pt-2 border-t border-outline-variant/20">
             <span className="font-headline-md text-[22px] font-bold text-primary">$1,400</span>
             <button className="text-primary hover:text-primary-container font-label-md text-[14px] font-semibold px-4 py-2 transition-colors flex items-center gap-1">
-              Details <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+              Details <ChevronRight className=" text-[16px]" />
             </button>
           </div>
         </div>
       </div>
       <div className="lg:col-span-4 bg-primary text-white rounded-2xl p-8 relative overflow-hidden flex flex-col justify-between h-full min-h-[220px] shadow-lg">
         <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-white/10 rounded-full blur-2xl" />
-        <span className="material-symbols-outlined absolute -bottom-6 -right-6 text-[140px] opacity-10" style={{fontVariationSettings: '"FILL" 1'}}>sailing</span>
+        <HelpCircle className=" absolute -bottom-6 -right-6 text-[140px] opacity-10" />
         <div className="relative z-10">
           <h3 className="font-headline-md text-[24px] font-semibold mb-6">Why join our batches?</h3>
           <ul className="space-y-4 font-body-md text-[15px]">
             <li className="flex items-center gap-3">
               <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-[16px] text-white">check</span>
+                <HelpCircle className=" text-[16px] text-white" />
               </div>
               <span>95% first-attempt clearance</span>
             </li>
             <li className="flex items-center gap-3">
               <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-[16px] text-white">check</span>
+                <HelpCircle className=" text-[16px] text-white" />
               </div>
               <span>Recorded MMD Orals</span>
             </li>
             <li className="flex items-center gap-3">
               <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-[16px] text-white">check</span>
+                <HelpCircle className=" text-[16px] text-white" />
               </div>
               <span>1-on-1 doubt clearing</span>
             </li>
@@ -172,7 +173,7 @@ export default function BatchesScreen() {
       <div className="lg:col-span-8 border border-outline-variant/20 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 bg-surface-container-lowest justify-between premium-card">
         <div className="flex items-center gap-5">
           <div className="w-14 h-14 rounded-2xl bg-secondary-container/40 flex items-center justify-center shrink-0 border border-secondary-container/50">
-            <span className="material-symbols-outlined text-secondary text-[28px]">support_agent</span>
+            <HelpCircle className=" text-secondary text-[28px]" />
           </div>
           <div>
             <h4 className="font-headline-md text-[18px] font-semibold text-on-surface mb-1">Need help choosing a batch?</h4>

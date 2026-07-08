@@ -1,3 +1,4 @@
+import { Anchor, Bell, Ship, HelpCircle, Home, ClipboardList, BookOpen, Bookmark, User } from "lucide-react";
 import BottomNav from "../components/BottomNav";
 import { Link } from "react-router";
 
@@ -7,17 +8,17 @@ export default function StudyNotesScreen() {
       <div>
   <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 glass-panel border-b border-outline-variant/30">
     <button className="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all active:scale-95 duration-200 ease-in-out flex items-center justify-center">
-      <span className="material-symbols-outlined font-label-md text-label-md">anchor</span>
+      <Anchor className=" font-label-md text-label-md" />
     </button>
     <h1 className="text-headline-md font-headline-md font-bold text-primary">Sailor Prep</h1>
     <button className="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all active:scale-95 duration-200 ease-in-out flex items-center justify-center">
-      <span className="material-symbols-outlined font-label-md text-label-md">notifications</span>
+      <Bell className=" font-label-md text-label-md" />
     </button>
   </header>
   <main className="flex-grow flex flex-col pt-20 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full h-[calc(100vh-80px)] overflow-hidden relative z-10">
     <div className="mb-6 flex flex-col items-center justify-center text-center">
       <span className="glass-panel text-primary px-4 py-1.5 rounded-full font-label-md text-label-md mb-3 inline-flex items-center gap-1.5 shadow-sm border border-primary/20">
-        <span className="material-symbols-outlined text-[16px]">directions_boat</span>
+        <Ship className=" text-[16px]" />
         Ship Stability
       </span>
       <h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-1">Metacentric Height</h2>
@@ -35,7 +36,7 @@ export default function StudyNotesScreen() {
           <div className="flex justify-between items-start mb-4">
             <span className="font-label-md text-label-md text-primary/60 uppercase tracking-[0.15em] font-bold">Question</span>
             <button className="text-on-surface-variant hover:text-primary transition-colors bg-surface-container-low p-2 rounded-full shadow-sm">
-              <span className="material-symbols-outlined text-[20px]">bookmark_border</span>
+              <HelpCircle className=" text-[20px]" />
             </button>
           </div>
           <div className="flex-grow flex items-center justify-center text-center px-4">
@@ -43,7 +44,7 @@ export default function StudyNotesScreen() {
           </div>
           <div className="mt-auto text-center">
             <div className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-primary/5 text-primary border border-primary/10 animate-bounce duration-3000">
-              <span className="material-symbols-outlined text-[18px]">touch_app</span>
+              <HelpCircle className=" text-[18px]" />
               <span className="font-label-sm text-label-sm uppercase tracking-wider font-bold">Tap to reveal</span>
             </div>
           </div>
@@ -68,19 +69,19 @@ export default function StudyNotesScreen() {
     <div className="w-full max-w-md mx-auto grid grid-cols-3 gap-4 opacity-0 translate-y-4 pointer-events-none transition-all duration-500 ease-out" id="controls-area">
       <button className="glass-panel text-on-surface-variant py-4 rounded-2xl font-label-md text-label-md hover:bg-white/80 transition-all flex flex-col items-center justify-center gap-2 active:scale-95 shadow-sm border border-outline-variant/20">
         <div className="w-10 h-10 rounded-full bg-error/10 flex items-center justify-center mb-1">
-          <span className="material-symbols-outlined text-error">sentiment_dissatisfied</span>
+          <HelpCircle className=" text-error" />
         </div>
         Hard
       </button>
       <button className="bg-primary text-on-primary py-4 rounded-2xl font-label-md text-label-md hover:bg-primary/90 transition-all flex flex-col items-center justify-center gap-2 active:scale-95 shadow-lg shadow-primary/30 border border-primary/20">
         <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mb-1">
-          <span className="material-symbols-outlined text-white">sentiment_satisfied</span>
+          <HelpCircle className=" text-white" />
         </div>
         Good
       </button>
       <button className="glass-panel text-on-surface-variant py-4 rounded-2xl font-label-md text-label-md hover:bg-white/80 transition-all flex flex-col items-center justify-center gap-2 active:scale-95 shadow-sm border border-outline-variant/20">
         <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-1">
-          <span className="material-symbols-outlined text-primary">sentiment_very_satisfied</span>
+          <HelpCircle className=" text-primary" />
         </div>
         Easy
       </button>
@@ -90,19 +91,19 @@ export default function StudyNotesScreen() {
   <nav className="hidden md:flex fixed top-0 left-0 w-64 h-full glass-panel border-r border-outline-variant/30 flex-col pt-24 px-4 z-40">
     <div className="flex flex-col gap-2">
       <Link  className="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md" to="/welcome">
-        <span className="material-symbols-outlined">home</span> Home
+        <Home className="" /> Home
       </Link>
       <Link  className="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md" to="/mock-tests">
-        <span className="material-symbols-outlined">assignment</span> Tests
+        <ClipboardList className="" /> Tests
       </Link>
       <Link  className="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md" to="/pyq">
-        <span className="material-symbols-outlined">history_edu</span> PYQ
+        <BookOpen className="" /> PYQ
       </Link>
       <Link  className="flex items-center gap-3 px-4 py-3 rounded-xl text-primary font-bold bg-primary/10 transition-colors font-label-md text-label-md" to="/study-notes">
-        <span className="material-symbols-outlined" style={{fontVariationSettings: '"FILL" 1'}}>style</span> Notes
+        <Bookmark className="" /> Notes
       </Link>
       <Link  className="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md" to="/my-progress">
-        <span className="material-symbols-outlined">person</span> Profile
+        <User className="" /> Profile
       </Link>
     </div>
   </nav>

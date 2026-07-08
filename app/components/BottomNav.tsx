@@ -1,3 +1,4 @@
+import { Home, ClipboardList, BookOpen, Bookmark, User } from "lucide-react";
 import { NavLink } from "react-router";
 
 export default function BottomNav() {
@@ -14,7 +15,7 @@ export default function BottomNav() {
       <NavLink className={getNavClass} to="/welcome">
         {({ isActive }) => (
           <>
-            <span className="material-symbols-outlined mb-1" style={getIconStyle({ isActive })}>home</span>
+            <Home className="mb-1" />
             <span className="font-label-sm text-label-sm">Home</span>
           </>
         )}
@@ -22,7 +23,7 @@ export default function BottomNav() {
       <NavLink className={getNavClass} to="/mock-tests">
         {({ isActive }) => (
           <>
-            <span className="material-symbols-outlined mb-1" style={getIconStyle({ isActive })}>assignment</span>
+            <ClipboardList className="mb-1" />
             <span className="font-label-sm text-label-sm">Tests</span>
           </>
         )}
@@ -30,7 +31,7 @@ export default function BottomNav() {
       <NavLink className={getNavClass} to="/pyq">
         {({ isActive }) => (
           <>
-            <span className="material-symbols-outlined mb-1" style={getIconStyle({ isActive })}>history_edu</span>
+            <BookOpen className="mb-1" />
             <span className="font-label-sm text-label-sm">PYQ</span>
           </>
         )}
@@ -38,7 +39,7 @@ export default function BottomNav() {
       <NavLink className={getNavClass} to="/study-notes">
         {({ isActive }) => (
           <>
-            <span className="material-symbols-outlined mb-1" style={getIconStyle({ isActive })}>style</span>
+            <Bookmark className="mb-1" />
             <span className="font-label-sm text-label-sm">Notes</span>
           </>
         )}
@@ -46,7 +47,7 @@ export default function BottomNav() {
       <NavLink className={getNavClass} to="/my-progress">
         {({ isActive }) => (
           <>
-            <span className="material-symbols-outlined mb-1" style={getIconStyle({ isActive })}>person</span>
+            <User className="mb-1" />
             <span className="font-label-sm text-label-sm">Profile</span>
           </>
         )}
