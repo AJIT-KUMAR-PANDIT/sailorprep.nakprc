@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Interview Prep - Sailor Prep Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#eff1f2",
+                    "outline": "#70797b",
+                    "surface-bright": "#f8f9fa",
+                    "on-tertiary-container": "#fffbff",
+                    "on-primary": "#ffffff",
+                    "secondary": "#46636d",
+                    "inverse-primary": "#93d0e0",
+                    "tertiary-container": "#9f6840",
+                    "secondary-fixed-dim": "#adcbd7",
+                    "on-primary-fixed-variant": "#004e5c",
+                    "surface-container-high": "#e7e8e9",
+                    "on-primary-fixed": "#001f26",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f8f9fa",
+                    "surface-container": "#eceeef",
+                    "surface-container-highest": "#e1e3e4",
+                    "inverse-surface": "#2e3132",
+                    "primary": "#226472",
+                    "surface-dim": "#d8dadb",
+                    "on-primary-container": "#f9fdff",
+                    "primary-fixed-dim": "#93d0e0",
+                    "on-surface": "#191c1d",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#001f27",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f2f4f5",
+                    "on-secondary-fixed-variant": "#2e4b54",
+                    "on-tertiary-fixed-variant": "#693b17",
+                    "secondary-fixed": "#c9e8f3",
+                    "tertiary": "#82502a",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#fcb88a",
+                    "on-secondary-container": "#4a6771",
+                    "primary-container": "#3f7d8c",
+                    "surface-tint": "#256675",
+                    "tertiary-fixed": "#ffdcc6",
+                    "on-tertiary-fixed": "#301400",
+                    "outline-variant": "#bfc8cb",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#afecfd",
+                    "on-surface-variant": "#40484b",
+                    "on-background": "#191c1d",
+                    "background": "#f8f9fa",
+                    "secondary-container": "#c6e5f0",
+                    "surface-variant": "#e1e3e4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "container-max": "1120px",
+                    "base": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["manrope"],
+                    "label-sm": ["inter"],
+                    "headline-md": ["manrope"],
+                    "label-md": ["inter"],
+                    "headline-lg": ["manrope"],
+                    "headline-lg-mobile": ["manrope"],
+                    "body-lg": ["inter"],
+                    "body-md": ["inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                    "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                    "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                    "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                    "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                    "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                    "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .horizon-pattern {
+            background-image: linear-gradient(to bottom, rgba(34, 100, 114, 0.03) 1px, transparent 1px);
+            background-size: 100% 24px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(34, 100, 114, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(34, 100, 114, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(34, 100, 114, 0); }
+    }
+    .hover-pulse-ring:hover {
+      animation: pulse-ring 1.5s infinite;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen pb-24 md:pb-0 pt-16 horizon-pattern">
+<!-- TopAppBar (Pro Refined) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface border-b border-surface-variant">
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container p-2 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">anchor</span>
+</button>
+<h1 class="text-headline-md font-headline-md font-bold text-on-surface tracking-tight">Sailor Prep</h1>
+</div>
+<!-- Desktop Nav Items -->
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">home</span>
+                Home
+            </a>
+<!-- Active State -->
+<a class="text-primary font-label-md text-label-md font-bold flex items-center gap-2 border-b-2 border-primary pb-1" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">assignment</span>
+                Tests
+            </a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">history_edu</span>
+                PYQ
+            </a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">style</span>
+                Notes
+            </a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]">person</span>
+                Profile
+            </a>
+</nav>
+<button class="text-on-surface-variant hover:bg-surface-container p-2 rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8">
+<!-- Hero Section -->
+<div class="mb-10 relative overflow-hidden rounded-[24px] bg-surface border border-surface-variant p-8 md:p-10 flex flex-col md:flex-row items-center gap-10 shadow-sm">
+<div class="absolute inset-0 z-0 opacity-5 pointer-events-none">
+<!-- subtle wave pattern in background -->
+<svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="40" id="wave-pro" patternunits="userSpaceOnUse" width="200" x="0" y="0">
+<path d="M0 20 Q 50 40, 100 20 T 200 20" fill="none" stroke="currentColor" stroke-width="2"></path>
+</pattern>
+</defs>
+<rect fill="url(#wave-pro)" height="100%" width="100%" x="0" y="0"></rect>
+</svg>
+</div>
+<div class="flex-1 z-10">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4 tracking-tight">Interview Ready</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-8 leading-relaxed">Master the critical scenarios required for maritime certification. Practice articulating procedures for Port State Control, emergencies, and cargo operations to ensure confidence and compliance.</p>
+<div class="flex flex-wrap gap-3">
+<span class="bg-secondary-container/60 text-on-secondary-container px-4 py-2 rounded-lg font-label-sm text-label-sm inline-flex items-center gap-1.5 border border-secondary-container">
+<span class="material-symbols-outlined text-[18px]">verified</span> 45 Scenarios
+                    </span>
+<span class="bg-surface-container-low text-on-surface-variant px-4 py-2 rounded-lg font-label-sm text-label-sm inline-flex items-center gap-1.5 border border-surface-variant">
+<span class="material-symbols-outlined text-[18px]">timer</span> 2h 30m avg
+                    </span>
+</div>
+</div>
+<div class="w-full md:w-5/12 aspect-video md:aspect-[4/3] relative rounded-2xl overflow-hidden shadow-md z-10 border border-surface-variant">
+<img class="w-full h-full object-cover" data-alt="A professional maritime officer in uniform, standing on the bridge of a modern cargo ship, looking confidently towards the horizon during golden hour. Soft, clear lighting emphasizing leadership and readiness. Minimalist framing with a light blue sky and calm sea in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu6BcM8MZBMtZoiuXE-rvFVwaRcKAUiyaFMUg6DWr6nrIaIZ1ddjrpeFLefMSwooYd3FxH16s3VjhXhgRgqJGOJkNUBjl0SWly8qogcWYvj-vhq6YBIqsRvWEsop5a3KDVqOiop9XaKv9o5D89GVNQXOsSLE8rPvod2KS7qneqdSkP9K_fwCqHwwtXDd_UIJsOyDC3qaqfsHwCFcU8_RhUII8gBVrc6pKxvf4bSr1n9rXOZPHuKBMCqw"/>
+</div>
+</div>
+<!-- Scenarios Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
+<!-- Port State Control -->
+<div class="col-span-1 md:col-span-6 bg-surface border border-surface-variant rounded-[24px] p-8 hover:shadow-md transition-shadow flex flex-col h-full group">
+<div class="flex items-start justify-between mb-6">
+<div class="bg-primary-container/20 p-3.5 rounded-2xl text-primary group-hover:bg-primary-container/30 transition-colors">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">policy</span>
+</div>
+<span class="bg-surface-container-low border border-surface-variant px-3 py-1.5 rounded-lg font-label-sm text-label-sm text-on-surface-variant">Regulatory</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 tracking-tight">Port State Control</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow leading-relaxed">Prepare for inspections. Demonstrate knowledge of SOLAS, MARPOL, and STCW compliance requirements during external audits.</p>
+<div class="space-y-5 bg-surface-container-low/50 rounded-2xl p-5 border border-surface-variant/50">
+<p class="font-label-md text-label-md text-on-surface font-medium leading-relaxed">Q: "Walk me through your preparation checklist before a scheduled PSC inspection."</p>
+<button class="text-primary font-label-md text-label-md flex items-center gap-2 hover:text-primary-container transition-colors group/btn hover-pulse-ring rounded-full px-4 py-2 bg-primary/10 border border-primary/20 hover:bg-primary/15 self-start">
+<span class="material-symbols-outlined text-[20px] group-hover/btn:scale-110 transition-transform">mic</span> Record Response
+                        </button>
+</div>
+</div>
+<!-- Emergency Drills -->
+<div class="col-span-1 md:col-span-6 bg-surface border border-surface-variant rounded-[24px] p-8 hover:shadow-md transition-shadow flex flex-col h-full group">
+<div class="flex items-start justify-between mb-6">
+<div class="bg-error-container/40 p-3.5 rounded-2xl text-error group-hover:bg-error-container/60 transition-colors">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<span class="bg-surface-container-low border border-surface-variant px-3 py-1.5 rounded-lg font-label-sm text-label-sm text-on-surface-variant">Safety Critical</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3 tracking-tight">Emergency Drills</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow leading-relaxed">Articulate rapid response protocols for critical situations onboard.</p>
+<div class="space-y-5 bg-surface-container-low/50 rounded-2xl p-5 border border-surface-variant/50">
+<p class="font-label-md text-label-md text-on-surface font-medium leading-relaxed">Q: "Describe the procedure and immediate actions for an Oil Spill drill on deck."</p>
+<button class="text-primary font-label-md text-label-md flex items-center gap-2 hover:text-primary-container transition-colors group/btn hover-pulse-ring rounded-full px-4 py-2 bg-primary/10 border border-primary/20 hover:bg-primary/15 self-start">
+<span class="material-symbols-outlined text-[20px] group-hover/btn:scale-110 transition-transform">mic</span> Record Response
+                        </button>
+</div>
+</div>
+<!-- Cargo Operations -->
+<div class="col-span-1 md:col-span-12 bg-surface border border-surface-variant rounded-[24px] p-8 hover:shadow-md transition-shadow group">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+<div class="flex items-center gap-5">
+<div class="bg-secondary-container/40 p-4 rounded-2xl text-on-secondary-container group-hover:bg-secondary-container/60 transition-colors">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1 tracking-tight">Cargo Operations</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Safe handling, loading, and discharging procedures specific to vessel type.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-5 p-6 rounded-2xl bg-surface-container-lowest border border-surface-variant hover:border-outline-variant transition-colors shadow-sm">
+<p class="font-label-md text-label-md text-on-surface font-medium leading-relaxed">Q: "What are the stability considerations and required calculations before loading heavy lift cargo?"</p>
+<div class="mt-auto pt-2">
+<button class="bg-primary text-on-primary px-5 py-2.5 rounded-full font-label-md text-label-md hover:bg-surface-tint transition-all hover-pulse-ring flex items-center gap-2 w-fit">
+<span class="material-symbols-outlined text-[20px]">radio_button_checked</span> Record Response
+                            </button>
+</div>
+</div>
+<div class="flex flex-col gap-5 p-6 rounded-2xl bg-surface-container-lowest border border-surface-variant hover:border-outline-variant transition-colors shadow-sm">
+<p class="font-label-md text-label-md text-on-surface font-medium leading-relaxed">Q: "Explain the atmosphere control procedures when preparing tanks for hazardous liquid cargo."</p>
+<div class="mt-auto pt-2">
+<button class="bg-primary text-on-primary px-5 py-2.5 rounded-full font-label-md text-label-md hover:bg-surface-tint transition-all hover-pulse-ring flex items-center gap-2 w-fit">
+<span class="material-symbols-outlined text-[20px]">radio_button_checked</span> Record Response
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Pro Refined Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-safe h-20 bg-surface border-t border-surface-variant">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-xl p-2 w-16 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">home</span>
+<span class="font-label-sm text-[10px] font-medium">Home</span>
+</a>
+<!-- Active Tab -->
+<a class="flex flex-col items-center justify-center text-primary rounded-xl p-2 w-16 transition-all" href="#">
+<div class="bg-primary-container/30 px-4 py-1 rounded-full mb-1">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">assignment</span>
+</div>
+<span class="font-label-sm text-[10px] font-bold">Tests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-xl p-2 w-16 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">history_edu</span>
+<span class="font-label-sm text-[10px] font-medium">PYQ</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-xl p-2 w-16 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">style</span>
+<span class="font-label-sm text-[10px] font-medium">Notes</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary rounded-xl p-2 w-16 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">person</span>
+<span class="font-label-sm text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</body></html>
