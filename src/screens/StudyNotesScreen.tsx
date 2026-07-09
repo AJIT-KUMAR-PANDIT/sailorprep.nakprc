@@ -1,28 +1,10 @@
-import nakprcLogo from "../welcome/logo.webp";
-import { Anchor, Bell, Ship, Smile, Heart, Frown, Home, ClipboardList, BookOpen, Bookmark as BookmarkIcon, User } from "lucide-react";
-import BottomNav from "../components/BottomNav";
-
+import { Ship, Smile, Heart, Frown, Home, ClipboardList, BookOpen, Bookmark as BookmarkIcon, User } from "lucide-react";
 export default function StudyNotesScreen() {
   const filled = '"FILL" 1';
   return (
     <>
       <div className="min-h-screen flex flex-col maritime-bg text-on-background antialiased overflow-hidden bg-background">
         {/* Top App Bar */}
-        <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 glass-panel border-b border-outline-variant/30">
-          <button className="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all active:scale-95 duration-200 ease-in-out flex items-center justify-center">
-            <Anchor className="text-[24px]" />
-          </button>
-          <div className="flex flex-col">
-        <h1 className="text-headline-md font-headline-md font-bold text-primary">Sailor Prep</h1>
-        <div className="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium mt-0.5">
-          A Product of <img src={nakprcLogo} alt="NAKPRC Logo" className="h-3 w-auto object-contain" /> NAKPRC
-        </div>
-      </div>
-          <button className="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-all active:scale-95 duration-200 ease-in-out flex items-center justify-center">
-            <Bell className="text-[24px]" />
-          </button>
-        </header>
-
         {/* Main Content */}
         <main className="flex-grow flex flex-col pt-20 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full h-[calc(100vh-80px)] overflow-hidden relative z-10">
           {/* Header Section */}
@@ -106,8 +88,6 @@ export default function StudyNotesScreen() {
         </main>
 
         {/* Bottom Nav (mobile only) */}
-        <BottomNav />
-
         {/* Desktop Side Nav */}
         <nav className="hidden md:flex fixed top-0 left-0 w-64 h-full glass-panel border-r border-outline-variant/30 flex-col pt-24 px-4 z-40">
           <div className="flex flex-col gap-2">

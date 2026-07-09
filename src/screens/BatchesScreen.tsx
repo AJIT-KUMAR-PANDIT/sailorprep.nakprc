@@ -1,40 +1,10 @@
-import nakprcLogo from "../welcome/logo.webp";
-import { Anchor, Bell, Flame, Check, ArrowRight, ChevronRight, Headset } from "lucide-react";
-import BottomNav from "../components/BottomNav";
-import { Link } from "react-router-dom";
+import { Flame, Check, ArrowRight, ChevronRight, Headset, Anchor } from "lucide-react";
 
 export default function BatchesScreen() {
-  const filled = '"FILL" 1';
   return (
     <>
       <div className="min-h-screen ambient-wave-bg flex flex-col md:pb-0 pb-[80px] bg-background text-on-background antialiased">
         {/* Top App Bar */}
-        <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30">
-          <div className="flex items-center gap-4">
-            <Anchor className="text-primary" style={{ fontVariationSettings: filled }} />
-            <div className="flex flex-col">
-        <span className="font-headline-md text-headline-md font-bold text-primary tracking-tight">Sailor Prep</span>
-        <div className="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium mt-0.5">
-          A Product of <img src={nakprcLogo} alt="NAKPRC Logo" className="h-3 w-auto object-contain" /> NAKPRC
-        </div>
-      </div>
-          </div>
-          <div className="flex items-center gap-4">
-            {/* Navigation links for Web (hidden on mobile) */}
-            <nav className="hidden md:flex gap-6 items-center pr-6">
-              <Link to="/welcome" className="text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low px-3 py-2 rounded-lg transition-colors">Home</Link>
-              <Link to="/mock-tests" className="text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low px-3 py-2 rounded-lg transition-colors">Tests</Link>
-              <Link to="/pyq" className="text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low px-3 py-2 rounded-lg transition-colors">PYQ</Link>
-              <span className="text-primary font-bold font-label-md text-label-md bg-secondary-container/20 px-3 py-2 rounded-lg">Batches</span>
-              <Link to="/study-notes" className="text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low px-3 py-2 rounded-lg transition-colors">Notes</Link>
-              <Link to="/my-progress" className="text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-low px-3 py-2 rounded-lg transition-colors">Profile</Link>
-            </nav>
-            <button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant">
-              <Bell />
-            </button>
-          </div>
-        </header>
-
         {/* Main Content Canvas */}
         <main className="flex-grow pt-24 pb-8 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto relative z-10">
           {/* Page Header */}
@@ -219,8 +189,7 @@ export default function BatchesScreen() {
         </main>
 
         {/* Bottom Nav (mobile only) */}
-        <BottomNav />
-      </div>
+        </div>
     </>
   );
 }

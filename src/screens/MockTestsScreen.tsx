@@ -1,28 +1,9 @@
-import nakprcLogo from "../welcome/logo.webp";
-import { Anchor, Bell, LifeBuoy, Globe, Ship, Clock, BookOpen } from "lucide-react";
-import BottomNav from "../components/BottomNav";
-
+import { LifeBuoy, Globe, Ship, Clock, BookOpen } from "lucide-react";
 export default function MockTestsScreen() {
   return (
     <>
       <div className="min-h-screen bg-background text-on-background font-body-md relative maritime-bg-pattern antialiased flex flex-col">
         {/* Top App Bar */}
-        <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-[72px] bg-surface/70 backdrop-blur-xl border-b border-white/30 shadow-sm">
-          <button aria-label="Menu" className="flex items-center justify-center p-2.5 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
-            <Anchor className="text-[24px]" style={{ fontVariationSettings: '"FILL" 0' }} />
-          </button>
-          <div className="flex flex-col">
-        <h1 className="font-headline-md text-headline-md font-bold text-primary tracking-tight">Sailor Prep</h1>
-        <div className="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium mt-0.5">
-          A Product of <img src={nakprcLogo} alt="NAKPRC Logo" className="h-3 w-auto object-contain" /> NAKPRC
-        </div>
-      </div>
-          <button aria-label="Notifications" className="flex items-center justify-center p-2.5 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors relative">
-            <Bell className="text-[24px]" />
-            <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface" />
-          </button>
-        </header>
-
         {/* Main Content */}
         <main className="flex-grow pt-28 pb-32 px-margin-mobile md:px-margin-desktop w-full max-w-container-max mx-auto">
           {/* Page Header */}
@@ -119,8 +100,7 @@ export default function MockTestsScreen() {
         </main>
 
         {/* Bottom Nav */}
-        <BottomNav />
-      </div>
+        </div>
     </>
   );
 }

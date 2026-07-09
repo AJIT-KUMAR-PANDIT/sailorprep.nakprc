@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import MainLayout from './components/MainLayout';
 import WelcomeScreen from './screens/WelcomeScreen';
 import BatchesScreen from './screens/BatchesScreen';
 import InterviewPrepScreen from './screens/InterviewPrepScreen';
@@ -11,14 +12,16 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<WelcomeScreen />} />
-        <Route path="/welcome" element={<WelcomeScreen />} />
-        <Route path="/batches" element={<BatchesScreen />} />
-        <Route path="/interview-prep" element={<InterviewPrepScreen />} />
-        <Route path="/mock-tests" element={<MockTestsScreen />} />
-        <Route path="/my-progress" element={<MyProgressScreen />} />
-        <Route path="/pyq" element={<PyqScreen />} />
-        <Route path="/study-notes" element={<StudyNotesScreen />} />
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<WelcomeScreen />} />
+          <Route path="/welcome" element={<WelcomeScreen />} />
+          <Route path="/batches" element={<BatchesScreen />} />
+          <Route path="/interview-prep" element={<InterviewPrepScreen />} />
+          <Route path="/mock-tests" element={<MockTestsScreen />} />
+          <Route path="/my-progress" element={<MyProgressScreen />} />
+          <Route path="/pyq" element={<PyqScreen />} />
+          <Route path="/study-notes" element={<StudyNotesScreen />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

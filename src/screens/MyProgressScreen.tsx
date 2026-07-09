@@ -1,22 +1,10 @@
-import { Anchor, Bell, Diamond, Medal, Ship, Pencil, TrendingUp, Sliders, ArrowRight, Award, Flame, Scale, IdCard, ChevronRight, BellRing, HelpCircle, LogOut } from "lucide-react";
-import BottomNav from "../components/BottomNav";
-
+import { Diamond, Medal, Ship, Pencil, TrendingUp, Sliders, ArrowRight, Award, Flame, Scale, IdCard, ChevronRight, BellRing, HelpCircle, LogOut } from "lucide-react";
 export default function MyProgressScreen() {
   return (
     <>
       <div>
   <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px] pointer-events-none -z-10" />
   <div className="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-secondary/5 blur-[120px] pointer-events-none -z-10" />
-  <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface/60 backdrop-blur-xl border-b border-white/20">
-    <button aria-label="Menu" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-primary transition-colors duration-200">
-      <Anchor className=" text-2xl" />
-    </button>
-    <h1 className="font-headline-md text-headline-md font-bold text-primary tracking-tight">Pro Dashboard</h1>
-    <button aria-label="Notifications" className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low text-on-surface-variant transition-colors duration-200 relative">
-      <Bell className=" text-2xl" />
-      <span className="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border border-surface" />
-    </button>
-  </header>
   <main className="pt-24 pb-28 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full grid grid-cols-4 md:grid-cols-12 gap-6 md:gap-8">
     <section className="col-span-4 md:col-span-12 mb-2">
       <div className="glass-card rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-8 relative overflow-hidden">
@@ -238,8 +226,7 @@ export default function MyProgressScreen() {
       </div>
     </section>
   </main>
-  <BottomNav />
-</div>
+  </div>
 
     </>
   );

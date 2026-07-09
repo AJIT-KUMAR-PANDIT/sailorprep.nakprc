@@ -1,6 +1,4 @@
-import nakprcLogo from "../welcome/logo.webp";
-import { Anchor, Bell, BookOpen, BadgeCheck, Star, ArrowUpRight, Flame, ChevronDown, FileText, HelpCircle, Ship, Scale, Home, ClipboardList, Bookmark, User } from "lucide-react";
-import BottomNav from "../components/BottomNav";
+import { BookOpen, BadgeCheck, Star, ArrowUpRight, Flame, ChevronDown, FileText, HelpCircle, Ship, Scale, Home, ClipboardList, Bookmark, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function PyqScreen() {
@@ -13,23 +11,6 @@ export default function PyqScreen() {
         <div className="fixed top-0 inset-x-0 h-64 bg-gradient-to-b from-primary/5 to-transparent -z-10 pointer-events-none" />
 
         {/* Top App Bar */}
-        <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md pt-safe border-b border-outline-variant/30">
-          <div className="flex items-center gap-3">
-            <Anchor className="text-primary" style={{ fontVariationSettings: filled }} />
-            <div className="flex flex-col">
-        <span className="font-headline-md text-headline-md font-bold text-primary">Sailor Prep</span>
-        <div className="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium mt-0.5">
-          A Product of <img src={nakprcLogo} alt="NAKPRC Logo" className="h-3 w-auto object-contain" /> NAKPRC
-        </div>
-      </div>
-          </div>
-          <div className="flex items-center">
-            <button className="p-2 rounded-full hover:bg-surface-container-low text-on-surface-variant transition-colors active:scale-95 duration-200 ease-in-out">
-              <Bell />
-            </button>
-          </div>
-        </header>
-
         {/* Main Content */}
         <main className="flex-grow pt-[88px] pb-[100px] px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
           {/* Header Section */}
@@ -207,8 +188,6 @@ export default function PyqScreen() {
         </main>
 
         {/* Bottom Nav (mobile only) */}
-        <BottomNav />
-
         {/* Desktop Side Nav */}
         <nav className="hidden md:flex fixed top-16 left-0 h-[calc(100vh-64px)] w-[80px] flex-col items-center py-8 gap-8 border-r border-outline-variant/20 bg-surface/50 backdrop-blur-sm z-40">
           <Link to="/welcome" className="flex flex-col items-center text-on-surface-variant hover:text-primary transition-colors p-2 rounded-lg hover:bg-surface-container-low" title="Home">

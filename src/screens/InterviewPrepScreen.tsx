@@ -1,7 +1,4 @@
-import nakprcLogo from "../welcome/logo.webp";
-import { Anchor, Home, ClipboardList, BookOpen, Bookmark, User, Bell, BadgeCheck, Timer, Shield, Mic, AlertTriangle, Ship, CircleDot } from "lucide-react";
-import BottomNav from "../components/BottomNav";
-import { Link } from "react-router-dom";
+import { BadgeCheck, Timer, Shield, Mic, AlertTriangle, Ship, CircleDot } from "lucide-react";
 
 export default function InterviewPrepScreen() {
   const filled = '"FILL" 1';
@@ -12,46 +9,6 @@ export default function InterviewPrepScreen() {
         <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "linear-gradient(to bottom, rgba(34,100,114,0.08) 1px, transparent 1px)", backgroundSize: "100% 24px" }} />
 
         {/* Top App Bar */}
-        <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30">
-          <div className="flex items-center gap-4">
-            <button className="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors flex items-center justify-center">
-              <Anchor className="text-[24px]" style={{ fontVariationSettings: filled }} />
-            </button>
-            <div className="flex flex-col">
-        <h1 className="text-headline-md font-headline-md font-bold text-on-surface tracking-tight">Sailor Prep</h1>
-        <div className="flex items-center gap-1 text-[10px] text-on-surface-variant font-medium mt-0.5">
-          A Product of <img src={nakprcLogo} alt="NAKPRC Logo" className="h-3 w-auto object-contain" /> NAKPRC
-        </div>
-      </div>
-          </div>
-          {/* Desktop Nav Items */}
-          <nav className="hidden md:flex gap-6 items-center">
-            <Link to="/welcome" className="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-2">
-              <Home className="text-[20px]" />
-              Home
-            </Link>
-            <Link to="/mock-tests" className="text-primary font-label-md text-label-md font-bold flex items-center gap-2 border-b-2 border-primary pb-1">
-              <ClipboardList className="text-[20px]" style={{ fontVariationSettings: filled }} />
-              Tests
-            </Link>
-            <Link to="/pyq" className="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-2">
-              <BookOpen className="text-[20px]" />
-              PYQ
-            </Link>
-            <Link to="/study-notes" className="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-2">
-              <Bookmark className="text-[20px]" />
-              Notes
-            </Link>
-            <Link to="/my-progress" className="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md flex items-center gap-2">
-              <User className="text-[20px]" />
-              Profile
-            </Link>
-          </nav>
-          <button className="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors flex items-center justify-center">
-            <Bell className="text-[24px]" />
-          </button>
-        </header>
-
         {/* Main Content */}
         <main className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pt-28 pb-24 md:pt-20 md:pb-16">
           {/* Hero Section */}
@@ -158,8 +115,7 @@ export default function InterviewPrepScreen() {
         </main>
 
         {/* Bottom Nav */}
-        <BottomNav />
-      </div>
+        </div>
     </>
   );
 }
