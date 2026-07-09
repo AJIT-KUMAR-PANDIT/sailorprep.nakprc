@@ -14,7 +14,7 @@ export default function BottomNav() {
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-20 bg-surface/90 backdrop-blur-md border-t border-outline-variant/30">
-      <NavLink className={getNavClass} to="/welcome">
+      <NavLink className={getNavClass} to="/batches">
         {({ isActive }) => (
           <>
             <Home className="mb-1" style={getIconStyle({ isActive })} />

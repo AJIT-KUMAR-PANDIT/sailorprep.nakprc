@@ -12,9 +12,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Welcome screen without navigation layout */}
+        <Route path="/" element={<WelcomeScreen />} />
+        <Route path="/welcome" element={<WelcomeScreen />} />
+        
+        {/* Main application screens with navigation layout */}
         <Route element={<MainLayout />}>
-          <Route path="/" element={<WelcomeScreen />} />
-          <Route path="/welcome" element={<WelcomeScreen />} />
           <Route path="/batches" element={<BatchesScreen />} />
           <Route path="/interview-prep" element={<InterviewPrepScreen />} />
           <Route path="/mock-tests" element={<MockTestsScreen />} />
