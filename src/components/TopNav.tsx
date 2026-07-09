@@ -6,7 +6,7 @@ export default function TopNav() {
   const filled = '"FILL" 1';
   
   const navLinks = [
-    { path: 'welcome', label: 'Home' },
+    { path: 'batches', label: 'Home' },
     { path: 'mock-tests', label: 'Tests' },
     { path: 'pyq', label: 'PYQ' },
     { path: 'batches', label: 'Batches' },
