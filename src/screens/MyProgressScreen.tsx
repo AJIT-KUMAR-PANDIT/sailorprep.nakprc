@@ -6,7 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 export default function MyProgressScreen() {
   const [progress, setProgress] = useState<any>(null);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     async function fetchProgress() {
@@ -237,7 +237,7 @@ export default function MyProgressScreen() {
             </button>
           </li>
           <li className="mt-2 pt-2 border-t border-outline-variant/20 mx-2">
-            <button className="w-full flex items-center gap-4 p-3 rounded-2xl hover:bg-error/10 text-error transition-colors text-left group">
+            <button onClick={logout} className="w-full flex items-center gap-4 p-3 rounded-2xl hover:bg-error/10 text-error transition-colors text-left group cursor-pointer">
               <div className="w-10 h-10 rounded-full flex items-center justify-center">
                 <LogOut className=" text-[20px]" />
               </div>
