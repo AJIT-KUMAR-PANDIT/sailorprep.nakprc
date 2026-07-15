@@ -1,6 +1,7 @@
 import { Diamond, Medal, Ship, Pencil, TrendingUp, Sliders, ArrowRight, Award, Flame, Scale, IdCard, ChevronRight, BellRing, HelpCircle, LogOut } from "lucide-react";
 import { useEffect, useState } from "react";
 import { pb } from "../lib/pb";
+import AuthGuard from "../components/AuthGuard";
 
 export default function MyProgressScreen() {
   const [progress, setProgress] = useState<any>(null);
@@ -24,6 +25,7 @@ export default function MyProgressScreen() {
   <div className="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px] pointer-events-none -z-10" />
   <div className="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-secondary/5 blur-[120px] pointer-events-none -z-10" />
   <main className="pt-24 pb-28 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full grid grid-cols-4 md:grid-cols-12 gap-6 md:gap-8">
+    <AuthGuard type="replace">
     <section className="col-span-4 md:col-span-12 mb-2">
       <div className="glass-card rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-8 relative overflow-hidden">
         <div className="absolute top-0 right-0 bg-gradient-to-bl from-primary to-primary-container text-on-primary font-label-sm px-6 py-1.5 rounded-bl-xl font-bold tracking-wider uppercase shadow-md flex items-center gap-1">
@@ -243,6 +245,7 @@ export default function MyProgressScreen() {
         </ul>
       </div>
     </section>
+    </AuthGuard>
   </main>
   </div>
 

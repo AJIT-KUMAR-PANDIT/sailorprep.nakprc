@@ -1,6 +1,7 @@
 import { Clock, BookOpen } from "lucide-react";
 import { useEffect, useState } from "react";
 import { pb } from "../lib/pb";
+import AuthGuard from "../components/AuthGuard";
 
 export default function MockTestsScreen() {
   const [tests, setTests] = useState<any[]>([]);
@@ -65,7 +66,9 @@ export default function MockTestsScreen() {
                         <BookOpen className="text-[18px]" /> {test.total_questions} Qs
                       </div>
                     </div>
-                    <button className="w-full py-3.5 bg-primary text-on-primary rounded-xl font-label-md text-label-md font-bold shadow-md hover:shadow-lg hover:bg-surface-tint transition-all active:scale-[0.98] duration-200 text-center cursor-pointer">Take Test</button>
+                    <AuthGuard>
+                      <button className="w-full py-3.5 bg-primary text-on-primary rounded-xl font-label-md text-label-md font-bold shadow-md hover:shadow-lg hover:bg-surface-tint transition-all active:scale-[0.98] duration-200 text-center cursor-pointer">Take Test</button>
+                    </AuthGuard>
                   </div>
                 </div>
               ))

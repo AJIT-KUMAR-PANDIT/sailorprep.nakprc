@@ -1,6 +1,7 @@
 import { BadgeCheck, Timer, Mic, CircleDot } from "lucide-react";
 import { useEffect, useState } from "react";
 import { pb } from "../lib/pb";
+import AuthGuard from "../components/AuthGuard";
 
 export default function InterviewPrepScreen() {
   const [preps, setPreps] = useState<any[]>([]);
@@ -75,9 +76,11 @@ export default function InterviewPrepScreen() {
                   <p className="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow leading-relaxed" dangerouslySetInnerHTML={{ __html: prep.answer || "Formulate an answer for this scenario." }}></p>
                   <div className="space-y-5 bg-surface-container-low/50 rounded-2xl p-5 border border-surface-variant/50">
                     <p className="font-label-md text-label-md text-on-surface font-medium leading-relaxed">Q: "{prep.question}"</p>
-                    <button className="text-primary font-label-md text-label-md flex items-center gap-2 hover:text-primary-container transition-colors group/btn hover-pulse-ring rounded-full px-4 py-2 bg-primary/10 border border-primary/20 hover:bg-primary/15 self-start cursor-pointer">
-                      <CircleDot className="text-[20px] group-hover/btn:scale-110 transition-transform" /> Record Response
-                    </button>
+                    <AuthGuard>
+                      <button className="text-primary font-label-md text-label-md flex items-center gap-2 hover:text-primary-container transition-colors group/btn hover-pulse-ring rounded-full px-4 py-2 bg-primary/10 border border-primary/20 hover:bg-primary/15 self-start cursor-pointer">
+                        <CircleDot className="text-[20px] group-hover/btn:scale-110 transition-transform" /> Record Response
+                      </button>
+                    </AuthGuard>
                   </div>
                 </div>
               ))

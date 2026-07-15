@@ -2,6 +2,7 @@ import { BookOpen, BadgeCheck, Star, ArrowUpRight, Flame, ChevronDown, FileText,
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { pb } from "../lib/pb";
+import AuthGuard from "../components/AuthGuard";
 
 export default function PyqScreen() {
   const [pyqs, setPyqs] = useState<any[]>([]);
@@ -126,7 +127,9 @@ export default function PyqScreen() {
                   <p className="font-body-md text-body-md text-on-surface-variant mb-6 text-sm opacity-90">{pyq.subject}</p>
                   <div className="mt-auto">
                     {pyq.pdf_url && (
-                      <a href={pyq.pdf_url} target="_blank" rel="noreferrer" className="text-primary text-label-md font-bold hover:underline">View PDF</a>
+                      <AuthGuard>
+                        <a href={pyq.pdf_url} target="_blank" rel="noreferrer" className="text-primary text-label-md font-bold hover:underline">View PDF</a>
+                      </AuthGuard>
                     )}
                   </div>
                 </div>

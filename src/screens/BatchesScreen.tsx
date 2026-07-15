@@ -1,6 +1,7 @@
 import { Flame, Check, ArrowRight, ChevronRight, Headset, Anchor } from "lucide-react";
 import { useEffect, useState } from "react";
 import { pb } from "../lib/pb";
+import AuthGuard from "../components/AuthGuard";
 
 export default function BatchesScreen() {
   const [batches, setBatches] = useState<any[]>([]);
@@ -108,9 +109,11 @@ export default function BatchesScreen() {
                             </div>
                           </div>
                         </div>
-                        <button className="w-full bg-primary text-on-primary font-label-md text-[15px] font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex justify-center items-center gap-2 group-hover:bg-primary-container group-hover:text-on-primary-container btn-pro-pulse">
-                          Enroll Now <ArrowRight className="text-[20px] transition-transform group-hover:translate-x-1.5" />
-                        </button>
+                        <AuthGuard>
+                          <button className="w-full bg-primary text-on-primary font-label-md text-[15px] font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex justify-center items-center gap-2 group-hover:bg-primary-container group-hover:text-on-primary-container btn-pro-pulse">
+                            Enroll Now <ArrowRight className="text-[20px] transition-transform group-hover:translate-x-1.5" />
+                          </button>
+                        </AuthGuard>
                       </div>
                     </div>
                   );

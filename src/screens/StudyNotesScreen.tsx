@@ -1,6 +1,7 @@
 import { Ship, Smile, Heart, Frown, Home, ClipboardList, BookOpen, Bookmark as BookmarkIcon, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { pb } from "../lib/pb";
+import AuthGuard from "../components/AuthGuard";
 
 export default function StudyNotesScreen() {
   const [notes, setNotes] = useState<any[]>([]);
@@ -55,12 +56,13 @@ export default function StudyNotesScreen() {
 
           {/* Flashcard Area */}
           {!loading && currentNote && (
+            <AuthGuard>
             <div className="flex-grow flex flex-col items-center justify-center w-full max-w-2xl mx-auto perspective-1000 mb-8">
               <div className="w-full h-[400px] md:h-[450px] relative transform-style-3d flashcard-inner cursor-pointer" id="flashcard">
                 {/* Front of Card */}
                 <div className="absolute inset-0 w-full h-full bg-surface-container-lowest/90 rounded-[2rem] premium-shadow backface-hidden flex flex-col p-8 backdrop-blur-xl border border-white/60">
                   <div className="flex justify-between items-start mb-4">
-                    <span className="font-label-md text-label-md text-primary/60 uppercase tracking-[0.15em] font-bold">Question</span>
+                     <span className="font-label-md text-label-md text-primary/60 uppercase tracking-[0.15em] font-bold">Question</span>
                     <button className="text-on-surface-variant hover:text-primary transition-colors bg-surface-container-low p-2 rounded-full shadow-sm">
                       <BookmarkIcon className="text-[20px]" />
                     </button>
@@ -87,6 +89,7 @@ export default function StudyNotesScreen() {
                 </div>
               </div>
             </div>
+            </AuthGuard>
           )}
 
           {/* Controls (shown after flip) */}
