@@ -1,5 +1,6 @@
 import { Anchor, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import PocketBaseStatus from "../components/PocketBaseStatus";
 
 export default function WelcomeScreen() {
   const filled = '"FILL" 1';
@@ -49,6 +50,9 @@ export default function WelcomeScreen() {
             <Link to="/batches" className="w-full glass-panel hover:bg-surface-container-low text-primary font-label-md text-label-md py-4 px-6 rounded-xl transition-all duration-200">
               Log In
             </Link>
+            <div className="mt-4">
+              <PocketBaseStatus />
+            </div>
           </div>
         </div>
       </main>

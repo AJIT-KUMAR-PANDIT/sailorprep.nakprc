@@ -1,7 +1,24 @@
-import { BadgeCheck, Timer, Shield, Mic, AlertTriangle, Ship, CircleDot } from "lucide-react";
+import { BadgeCheck, Timer, Mic, CircleDot } from "lucide-react";
+import { useEffect, useState } from "react";
+import { pb } from "../lib/pb";
 
 export default function InterviewPrepScreen() {
-  const filled = '"FILL" 1';
+  const [preps, setPreps] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchPreps() {
+      try {
+        const records = await pb.collection('interview_prep').getList(1, 20);
+        setPreps(records.items);
+      } catch (error) {
+        console.error("Error fetching interview prep:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPreps();
+  }, []);
   return (
     <>
       <div className="min-h-screen bg-background text-on-background antialiased relative">
@@ -43,74 +60,30 @@ export default function InterviewPrepScreen() {
 
           {/* Scenarios Bento Grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
-            {/* Port State Control */}
-            <div className="col-span-1 md:col-span-6 bg-surface border border-surface-variant rounded-[24px] p-8 hover:shadow-md transition-shadow flex flex-col h-full group">
-              <div className="flex items-start justify-between mb-6">
-                <div className="bg-primary-container/20 p-3.5 rounded-2xl text-primary group-hover:bg-primary-container/30 transition-colors">
-                  <Shield className="text-[28px]" style={{ fontVariationSettings: filled }} />
-                </div>
-                <span className="bg-surface-container-low border border-surface-variant px-3 py-1.5 rounded-lg font-label-sm text-label-sm text-on-surface-variant">Regulatory</span>
-              </div>
-              <h3 className="font-headline-md text-headline-md text-on-surface mb-3 tracking-tight font-semibold">Port State Control</h3>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow leading-relaxed">Prepare for inspections. Demonstrate knowledge of SOLAS, MARPOL, and STCW compliance requirements during external audits.</p>
-              <div className="space-y-5 bg-surface-container-low/50 rounded-2xl p-5 border border-surface-variant/50">
-                <p className="font-label-md text-label-md text-on-surface font-medium leading-relaxed">Q: "Walk me through your preparation checklist before a scheduled PSC inspection."</p>
-                <button className="text-primary font-label-md text-label-md flex items-center gap-2 hover:text-primary-container transition-colors group/btn hover-pulse-ring rounded-full px-4 py-2 bg-primary/10 border border-primary/20 hover:bg-primary/15 self-start">
-                  <Mic className="text-[20px] group-hover/btn:scale-110 transition-transform" /> Record Response
-                </button>
-              </div>
-            </div>
-
-            {/* Emergency Drills */}
-            <div className="col-span-1 md:col-span-6 bg-surface border border-surface-variant rounded-[24px] p-8 hover:shadow-md transition-shadow flex flex-col h-full group">
-              <div className="flex items-start justify-between mb-6">
-                <div className="bg-error-container/40 p-3.5 rounded-2xl text-error group-hover:bg-error-container/60 transition-colors">
-                  <AlertTriangle className="text-[28px]" style={{ fontVariationSettings: filled }} />
-                </div>
-                <span className="bg-surface-container-low border border-surface-variant px-3 py-1.5 rounded-lg font-label-sm text-label-sm text-on-surface-variant">Safety Critical</span>
-              </div>
-              <h3 className="font-headline-md text-headline-md text-on-surface mb-3 tracking-tight font-semibold">Emergency Drills</h3>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow leading-relaxed">Articulate rapid response protocols for critical situations onboard.</p>
-              <div className="space-y-5 bg-surface-container-low/50 rounded-2xl p-5 border border-surface-variant/50">
-                <p className="font-label-md text-label-md text-on-surface font-medium leading-relaxed">Q: "Describe the procedure and immediate actions for an Oil Spill drill on deck."</p>
-                <button className="text-primary font-label-md text-label-md flex items-center gap-2 hover:text-primary-container transition-colors group/btn hover-pulse-ring rounded-full px-4 py-2 bg-primary/10 border border-primary/20 hover:bg-primary/15 self-start">
-                  <Mic className="text-[20px] group-hover/btn:scale-110 transition-transform" /> Record Response
-                </button>
-              </div>
-            </div>
-
-            {/* Cargo Operations */}
-            <div className="col-span-1 md:col-span-12 bg-surface border border-surface-variant rounded-[24px] p-8 hover:shadow-md transition-shadow group">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
-                <div className="flex items-center gap-5">
-                  <div className="bg-secondary-container/40 p-4 rounded-2xl text-on-secondary-container group-hover:bg-secondary-container/60 transition-colors">
-                    <Ship className="text-[32px]" style={{ fontVariationSettings: filled }} />
+            {loading ? (
+              <div className="col-span-full text-center py-10 text-on-surface-variant">Loading prep questions...</div>
+            ) : preps.length > 0 ? (
+              preps.map((prep) => (
+                <div key={prep.id} className="col-span-1 md:col-span-6 bg-surface border border-surface-variant rounded-[24px] p-8 hover:shadow-md transition-shadow flex flex-col h-full group">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="bg-primary-container/20 p-3.5 rounded-2xl text-primary group-hover:bg-primary-container/30 transition-colors">
+                      <Mic className="text-[28px]" />
+                    </div>
+                    <span className="bg-surface-container-low border border-surface-variant px-3 py-1.5 rounded-lg font-label-sm text-label-sm text-on-surface-variant uppercase">{prep.category || 'General'}</span>
                   </div>
-                  <div>
-                    <h3 className="font-headline-md text-headline-md text-on-surface mb-1 tracking-tight font-semibold">Cargo Operations</h3>
-                    <p className="font-body-md text-body-md text-on-surface-variant">Safe handling, loading, and discharging procedures specific to vessel type.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex flex-col gap-5 p-6 rounded-2xl bg-surface-container-lowest border border-surface-variant hover:border-outline-variant transition-colors shadow-sm">
-                  <p className="font-label-md text-label-md text-on-surface font-medium leading-relaxed">Q: "What are the stability considerations and required calculations before loading heavy lift cargo?"</p>
-                  <div className="mt-auto pt-2">
-                    <button className="bg-primary text-on-primary px-5 py-2.5 rounded-full font-label-md text-label-md hover:bg-surface-tint transition-all hover-pulse-ring flex items-center gap-2 w-fit">
-                      <CircleDot className="text-[20px]" /> Record Response
+                  <h3 className="font-headline-md text-headline-md text-on-surface mb-3 tracking-tight font-semibold">Scenario Practice</h3>
+                  <p className="font-body-md text-body-md text-on-surface-variant mb-8 flex-grow leading-relaxed" dangerouslySetInnerHTML={{ __html: prep.answer || "Formulate an answer for this scenario." }}></p>
+                  <div className="space-y-5 bg-surface-container-low/50 rounded-2xl p-5 border border-surface-variant/50">
+                    <p className="font-label-md text-label-md text-on-surface font-medium leading-relaxed">Q: "{prep.question}"</p>
+                    <button className="text-primary font-label-md text-label-md flex items-center gap-2 hover:text-primary-container transition-colors group/btn hover-pulse-ring rounded-full px-4 py-2 bg-primary/10 border border-primary/20 hover:bg-primary/15 self-start cursor-pointer">
+                      <CircleDot className="text-[20px] group-hover/btn:scale-110 transition-transform" /> Record Response
                     </button>
                   </div>
                 </div>
-                <div className="flex flex-col gap-5 p-6 rounded-2xl bg-surface-container-lowest border border-surface-variant hover:border-outline-variant transition-colors shadow-sm">
-                  <p className="font-label-md text-label-md text-on-surface font-medium leading-relaxed">Q: "Explain the atmosphere control procedures when preparing tanks for hazardous liquid cargo."</p>
-                  <div className="mt-auto pt-2">
-                    <button className="bg-primary text-on-primary px-5 py-2.5 rounded-full font-label-md text-label-md hover:bg-surface-tint transition-all hover-pulse-ring flex items-center gap-2 w-fit">
-                      <CircleDot className="text-[20px]" /> Record Response
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+              ))
+            ) : (
+              <div className="col-span-full text-center py-10 text-on-surface-variant">No interview prep scenarios found.</div>
+            )}
           </div>
         </main>
 

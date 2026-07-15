@@ -1,5 +1,23 @@
 import { Diamond, Medal, Ship, Pencil, TrendingUp, Sliders, ArrowRight, Award, Flame, Scale, IdCard, ChevronRight, BellRing, HelpCircle, LogOut } from "lucide-react";
+import { useEffect, useState } from "react";
+import { pb } from "../lib/pb";
+
 export default function MyProgressScreen() {
+  const [progress, setProgress] = useState<any>(null);
+
+  useEffect(() => {
+    async function fetchProgress() {
+      try {
+        const records = await pb.collection('user_progress').getList(1, 1);
+        if (records.items.length > 0) {
+          setProgress(records.items[0]);
+        }
+      } catch (error) {
+        console.error("Error fetching user progress:", error);
+      }
+    }
+    fetchProgress();
+  }, []);
   return (
     <>
       <div>
@@ -17,7 +35,7 @@ export default function MyProgressScreen() {
           </div>
           <img className="w-28 h-28 rounded-full object-cover relative z-10 m-[3px] border-4 border-surface" data-alt="A professional headshot of a young merchant navy cadet in a pristine white uniform. The lighting is bright and clear, reflecting a light-mode maritime aesthetic. The background is a soft, minimal studio grey. The cadet has a calm, focused expression, embodying a sense of duty and preparation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDehApe1Y4mFzEz-c_Xsv1r7aCIp6LDrst7KkrszP4UJAulQele7i61cnMtc_rSud40AhgMzxe05zGROJLgbXPzfCETiOCD-_EXwnnaPB5Ly2rIpAqftvqNjfS9xRZNH9vMwJblZHPA2u-jHp6P8oAJBT1UakBF6kOz2k34_YCo815RO6BhdP27MyhJ27IwKf9LStGKWnraGj2PUDQFOFhtUivbe34yrA1Bt_T_k1tFZqp8Ydm2HvecOw" />
           <div className="absolute -bottom-3 -right-3 bg-inverse-surface text-inverse-on-surface font-label-sm px-3 py-1.5 rounded-xl border-2 border-surface z-20 shadow-sm flex items-center gap-1">
-            Lvl 4 <Medal className=" text-[14px] text-primary-fixed" />
+            Lvl {progress?.current_level || 4} <Medal className=" text-[14px] text-primary-fixed" />
           </div>
         </div>
         <div className="flex-1 text-center md:text-left z-10 flex flex-col justify-center">

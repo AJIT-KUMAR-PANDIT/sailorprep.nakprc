@@ -1,6 +1,27 @@
 import { Flame, Check, ArrowRight, ChevronRight, Headset, Anchor } from "lucide-react";
+import { useEffect, useState } from "react";
+import { pb } from "../lib/pb";
 
 export default function BatchesScreen() {
+  const [batches, setBatches] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchBatches() {
+      try {
+        const records = await pb.collection('batches').getList(1, 10, {
+          sort: '-created',
+        });
+        setBatches(records.items);
+      } catch (error) {
+        console.error("Error fetching batches:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchBatches();
+  }, []);
+
   return (
     <>
       <div className="min-h-screen ambient-wave-bg flex flex-col md:pb-0 pb-[80px] bg-background text-on-background antialiased">
@@ -23,124 +44,116 @@ export default function BatchesScreen() {
 
           {/* Bento Grid Layout for Batches */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-            {/* Primary Featured Batch - spans 8 columns */}
-            <div className="lg:col-span-8 bg-surface-container-lowest border border-outline-variant/20 rounded-2xl overflow-hidden group premium-card relative flex flex-col md:flex-row h-full">
-              {/* Urgency Badge */}
-              <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md text-error font-label-sm text-label-sm px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm border border-error/10">
-                <Flame className="text-[14px] text-error" />
-                Only 5 seats left!
-              </div>
+            {loading ? (
+              <div className="lg:col-span-12 text-center py-10 text-on-surface-variant">Loading batches...</div>
+            ) : batches.length > 0 ? (
+              batches.map((batch, index) => {
+                const isFeatured = index === 0; // First one gets col-span-8
+                
+                if (isFeatured) {
+                  return (
+                    <div key={batch.id} className="lg:col-span-8 bg-surface-container-lowest border border-outline-variant/20 rounded-2xl overflow-hidden group premium-card relative flex flex-col md:flex-row h-full">
+                      {batch.seats_left <= 5 && batch.seats_left > 0 && (
+                        <div className="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-md text-error font-label-sm text-label-sm px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm border border-error/10">
+                          <Flame className="text-[14px] text-error" />
+                          Only {batch.seats_left} seats left!
+                        </div>
+                      )}
+                      
+                      <div className="md:w-5/12 h-56 md:h-auto relative overflow-hidden bg-surface-variant shrink-0">
+                        <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url('${batch.image_url || "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}')` }} />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-5">
+                          <span className="bg-white/20 text-white font-label-sm text-label-sm px-4 py-1.5 rounded-full backdrop-blur-md border border-white/30 shadow-sm">{batch.category}</span>
+                        </div>
+                      </div>
 
-              {/* Image Section */}
-              <div className="md:w-5/12 h-56 md:h-auto relative overflow-hidden bg-surface-variant shrink-0">
-                <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyQAQXc-e3I-G2GNmvgWw70A0xiodb4znOGyV7RRgD1WqnjqrG1I5nipHfkLVK48cbSzfZvgkOlInk21YZZRQWU-A-2bbdScA47X_7xoxCdhZtuygyEODXpHtvE-JPMTftEysM8e_OLMwu9SqQuFLZnPeZD4faZVRlVxxiUmSY89zqJClOH5bNjRfdEQQAUa7Ubh0pDF_tj7Sr1Zcw8FPiglU36sEFNjxOCauVKQ8SnYCSXuZcJRD2iA')" }} />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-5">
-                  <span className="bg-white/20 text-white font-label-sm text-label-sm px-4 py-1.5 rounded-full backdrop-blur-md border border-white/30 shadow-sm">Engineering</span>
-                </div>
-              </div>
+                      <div className="p-6 md:p-8 md:w-7/12 flex flex-col justify-between bg-surface-container-lowest">
+                        <div>
+                          <div className="flex justify-between items-start mb-3">
+                            <h2 className="font-headline-lg text-headline-md text-on-surface">{batch.title}</h2>
+                            <div className="text-right bg-primary/5 px-3 py-1.5 rounded-lg border border-primary/10">
+                              <span className="block font-headline-md text-body-lg font-bold text-primary">${batch.price}</span>
+                            </div>
+                          </div>
+                          <p className="font-body-md text-[15px] text-on-surface-variant mb-6 line-clamp-2 leading-relaxed">{batch.description}</p>
 
-              {/* Content Section */}
-              <div className="p-6 md:p-8 md:w-7/12 flex flex-col justify-between bg-surface-container-lowest">
-                <div>
-                  <div className="flex justify-between items-start mb-3">
-                    <h2 className="font-headline-lg text-headline-md text-on-surface">MEO Class IV Preparatory</h2>
-                    <div className="text-right bg-primary/5 px-3 py-1.5 rounded-lg border border-primary/10">
-                      <span className="block font-headline-md text-body-lg font-bold text-primary">$1,250</span>
+                          <div className="grid grid-cols-2 gap-y-5 gap-x-4 mb-8">
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0"><Anchor className="text-secondary text-[20px]" /></div>
+                              <div>
+                                <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Starts</span>
+                                <span className="block font-label-md text-label-md text-on-surface font-semibold">{batch.start_date ? new Date(batch.start_date).toLocaleDateString() : 'TBD'}</span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0"><Flame className="text-secondary text-[20px]" /></div>
+                              <div>
+                                <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Duration</span>
+                                <span className="block font-label-md text-label-md text-on-surface font-semibold">{batch.duration_months} Months</span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0"><ArrowRight className="text-secondary text-[20px]" /></div>
+                              <div>
+                                <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Mode</span>
+                                <span className="block font-label-md text-label-md text-on-surface font-semibold">{batch.mode}</span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0"><Anchor className="text-secondary text-[20px]" /></div>
+                              <div>
+                                <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Instructor</span>
+                                <span className="block font-label-md text-label-md text-on-surface font-semibold">{batch.instructor}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button className="w-full bg-primary text-on-primary font-label-md text-[15px] font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex justify-center items-center gap-2 group-hover:bg-primary-container group-hover:text-on-primary-container btn-pro-pulse">
+                          Enroll Now <ArrowRight className="text-[20px] transition-transform group-hover:translate-x-1.5" />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <div key={batch.id} className="lg:col-span-4 bg-surface-container-lowest border border-outline-variant/20 rounded-2xl overflow-hidden group premium-card flex flex-col relative h-full">
+                    <div className="h-48 relative overflow-hidden bg-surface-variant shrink-0">
+                      <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: `url('${batch.image_url || "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}')` }} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-5">
+                        <span className="bg-white/20 text-white font-label-sm text-label-sm px-4 py-1.5 rounded-full backdrop-blur-md border border-white/30 shadow-sm">{batch.category}</span>
+                      </div>
+                    </div>
+                    <div className="p-6 flex flex-col flex-grow bg-surface-container-lowest">
+                      <h2 className="font-headline-lg text-[22px] leading-[30px] font-semibold text-on-surface mb-2">{batch.title}</h2>
+                      <p className="font-body-md text-[14px] leading-relaxed text-on-surface-variant mb-6 line-clamp-2">{batch.description}</p>
+                      <div className="bg-surface-bright rounded-xl p-4 mb-6 border border-outline-variant/30 flex-grow grid grid-cols-2 gap-4">
+                        <div>
+                          <span className="block font-label-sm text-[10px] text-outline uppercase tracking-wider mb-1">Starts</span>
+                          <span className="font-label-md text-[14px] font-semibold text-on-surface flex items-center gap-1.5"><Flame className="text-[18px] text-primary" /> {batch.start_date ? new Date(batch.start_date).toLocaleDateString() : 'TBD'}</span>
+                        </div>
+                        <div>
+                          <span className="block font-label-sm text-[10px] text-outline uppercase tracking-wider mb-1">Duration</span>
+                          <span className="font-label-md text-[14px] font-semibold text-on-surface flex items-center gap-1.5"><Anchor className="text-[18px] text-primary" /> {batch.duration_months} M</span>
+                        </div>
+                        <div className="col-span-2">
+                          <span className="block font-label-sm text-[10px] text-outline uppercase tracking-wider mb-1">Instructor</span>
+                          <span className="font-label-md text-[14px] font-semibold text-on-surface flex items-center gap-1.5"><Anchor className="text-[18px] text-primary" /> {batch.instructor}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between mt-auto pt-2 border-t border-outline-variant/20">
+                        <span className="font-headline-md text-[22px] font-bold text-primary">${batch.price}</span>
+                        <button className="text-primary hover:text-primary-container font-label-md text-[14px] font-semibold px-4 py-2 transition-colors flex items-center gap-1">
+                          Details <ChevronRight className="text-[16px]" />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  <p className="font-body-md text-[15px] text-on-surface-variant mb-6 line-clamp-2 leading-relaxed">Comprehensive syllabus covering Marine Engineering Knowledge, Motor, and Safety for aspiring 4th Engineers.</p>
-
-                  {/* Details Grid */}
-                  <div className="grid grid-cols-2 gap-y-5 gap-x-4 mb-8">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0">
-                        <Anchor className="text-secondary text-[20px]" />
-                      </div>
-                      <div>
-                        <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Starts</span>
-                        <span className="block font-label-md text-label-md text-on-surface font-semibold">July 1, 2024</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0">
-                        <Flame className="text-secondary text-[20px]" />
-                      </div>
-                      <div>
-                        <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Duration</span>
-                        <span className="block font-label-md text-label-md text-on-surface font-semibold">3 Months</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0">
-                        <ArrowRight className="text-secondary text-[20px]" />
-                      </div>
-                      <div>
-                        <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Mode</span>
-                        <span className="block font-label-md text-label-md text-on-surface font-semibold">Hybrid</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center shrink-0">
-                        <Anchor className="text-secondary text-[20px]" />
-                      </div>
-                      <div>
-                        <span className="block font-label-sm text-[11px] text-outline uppercase tracking-wider">Instructor</span>
-                        <span className="block font-label-md text-label-md text-on-surface font-semibold">Ch. Eng. Sharma</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Action */}
-                <button className="w-full bg-primary text-on-primary font-label-md text-[15px] font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex justify-center items-center gap-2 group-hover:bg-primary-container group-hover:text-on-primary-container btn-pro-pulse">
-                  Enroll Now
-                  <ArrowRight className="text-[20px] transition-transform group-hover:translate-x-1.5" />
-                </button>
-              </div>
-            </div>
-
-            {/* Secondary Batch - spans 4 columns */}
-            <div className="lg:col-span-4 bg-surface-container-lowest border border-outline-variant/20 rounded-2xl overflow-hidden group premium-card flex flex-col relative h-full">
-              {/* Image Section */}
-              <div className="h-48 relative overflow-hidden bg-surface-variant shrink-0">
-                <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYl25nYFsMbQzYAX4uuERoM1VwVU7R_UDHZGrT3Th_jkyvyY0Rl052w-LIPvi_LLxpv5TRRcRYjQLn2KG4sg3-ciRcc1M0-Ac9RgCRab_vcXssBHw2UkDofwMUhfqDvH5QpUAyuqWMdYZ5kE9CCqD3T4N7dcCSNCkP_i1U71grthfA-R9ELQ8RJtoXTO0ZOZCN8xQ4V9sA0Z9NJkz2XjdFYrHEELsA09oYpzbIvYJc0LyB51mP5XXBDA')" }} />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-5">
-                  <span className="bg-white/20 text-white font-label-sm text-label-sm px-4 py-1.5 rounded-full backdrop-blur-md border border-white/30 shadow-sm">Navigation</span>
-                </div>
-              </div>
-
-              {/* Content Section */}
-              <div className="p-6 flex flex-col flex-grow bg-surface-container-lowest">
-                <h2 className="font-headline-lg text-[22px] leading-[30px] font-semibold text-on-surface mb-2">2nd Mate FG Foundation</h2>
-                <p className="font-body-md text-[14px] leading-relaxed text-on-surface-variant mb-6 line-clamp-2">Master celestial navigation, stability, and rule of the road for your operational level certification.</p>
-                <div className="bg-surface-bright rounded-xl p-4 mb-6 border border-outline-variant/30 flex-grow grid grid-cols-2 gap-4">
-                  <div>
-                    <span className="block font-label-sm text-[10px] text-outline uppercase tracking-wider mb-1">Starts</span>
-                    <span className="font-label-md text-[14px] font-semibold text-on-surface flex items-center gap-1.5">
-                      <Flame className="text-[18px] text-primary" /> June 15
-                    </span>
-                  </div>
-                  <div>
-                    <span className="block font-label-sm text-[10px] text-outline uppercase tracking-wider mb-1">Duration</span>
-                    <span className="font-label-md text-[14px] font-semibold text-on-surface flex items-center gap-1.5">
-                      <Anchor className="text-[18px] text-primary" /> 4 Months
-                    </span>
-                  </div>
-                  <div className="col-span-2">
-                    <span className="block font-label-sm text-[10px] text-outline uppercase tracking-wider mb-1">Instructor</span>
-                    <span className="font-label-md text-[14px] font-semibold text-on-surface flex items-center gap-1.5">
-                      <Anchor className="text-[18px] text-primary" /> Capt. V. Kumar
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between mt-auto pt-2 border-t border-outline-variant/20">
-                  <span className="font-headline-md text-[22px] font-bold text-primary">$1,400</span>
-                  <button className="text-primary hover:text-primary-container font-label-md text-[14px] font-semibold px-4 py-2 transition-colors flex items-center gap-1">
-                    Details <ChevronRight className="text-[16px]" />
-                  </button>
-                </div>
-              </div>
-            </div>
+                );
+              })
+            ) : (
+              <div className="lg:col-span-12 text-center py-10 text-on-surface-variant">No batches found.</div>
+            )}
 
             {/* Informational Bento Box - spans 4 columns */}
             <div className="lg:col-span-4 bg-primary text-white rounded-2xl p-8 relative overflow-hidden flex flex-col justify-between h-full min-h-[220px] shadow-lg">

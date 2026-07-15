@@ -1,7 +1,25 @@
-import { BookOpen, BadgeCheck, Star, ArrowUpRight, Flame, ChevronDown, FileText, HelpCircle, Ship, Scale, Home, ClipboardList, Bookmark, User } from "lucide-react";
+import { BookOpen, BadgeCheck, Star, ArrowUpRight, Flame, ChevronDown, FileText, Home, ClipboardList, Bookmark, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { pb } from "../lib/pb";
 
 export default function PyqScreen() {
+  const [pyqs, setPyqs] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchPyqs() {
+      try {
+        const records = await pb.collection('pyqs').getList(1, 20, { sort: '-year' });
+        setPyqs(records.items);
+      } catch (error) {
+        console.error("Error fetching pyqs:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPyqs();
+  }, []);
   const filled = '"FILL" 1';
   return (
     <>
@@ -93,89 +111,29 @@ export default function PyqScreen() {
             </div>
 
             {/* Archive Items */}
-            <div className="md:col-span-6 lg:col-span-4 tonal-card rounded-2xl p-6 cursor-pointer group">
-              <div className="flex justify-between items-start mb-4">
-                <div className="p-3 bg-surface-container-low rounded-xl text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary transition-colors shadow-sm">
-                  <FileText className="text-[24px]" />
-                </div>
-                <span className="font-label-sm text-label-sm text-on-surface-variant px-3 py-1 bg-surface-container rounded-full border border-outline-variant/20 shadow-sm">2022</span>
-              </div>
-              <h4 className="font-headline-md text-[22px] leading-tight font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">Chief Engineer Part A</h4>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-6 text-sm opacity-90">Focus on thermodynamics and fluid mechanics.</p>
-              <div className="mt-auto">
-                <div className="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-2">
-                  <span className="uppercase tracking-wider text-[10px] font-bold">Progress</span>
-                  <span className="text-primary font-bold">100% Completed</span>
-                </div>
-                <div className="w-full h-2 bg-surface-container rounded-full overflow-hidden shadow-inner">
-                  <div className="h-full bg-secondary rounded-full" style={{ width: "100%" }} />
-                </div>
-              </div>
-            </div>
-
-            <div className="md:col-span-6 lg:col-span-4 tonal-card rounded-2xl p-6 cursor-pointer group">
-              <div className="flex justify-between items-start mb-4">
-                <div className="p-3 bg-surface-container-low rounded-xl text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary transition-colors shadow-sm">
-                  <HelpCircle className="text-[24px]" />
-                </div>
-                <span className="font-label-sm text-label-sm text-on-surface-variant px-3 py-1 bg-surface-container rounded-full border border-outline-variant/20 shadow-sm">2021</span>
-              </div>
-              <h4 className="font-headline-md text-[22px] leading-tight font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">Electro-Technical Officer</h4>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-6 text-sm opacity-90">Control systems and high voltage procedures.</p>
-              <div className="mt-auto">
-                <div className="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-2">
-                  <span className="uppercase tracking-wider text-[10px] font-bold">Progress</span>
-                  <span className="text-primary font-bold">40% Completed</span>
-                </div>
-                <div className="w-full h-2 bg-surface-container rounded-full overflow-hidden shadow-inner">
-                  <div className="h-full bg-primary rounded-full relative" style={{ width: "40%" }}>
-                    <div className="absolute right-0 top-0 w-4 h-full bg-gradient-to-l from-white/40 to-transparent" />
+            {loading ? (
+              <div className="md:col-span-12 text-center py-10 text-on-surface-variant">Loading PYQs...</div>
+            ) : pyqs.length > 0 ? (
+              pyqs.map((pyq) => (
+                <div key={pyq.id} className="md:col-span-6 lg:col-span-4 tonal-card rounded-2xl p-6 cursor-pointer group hover:shadow-md transition-all">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="p-3 bg-surface-container-low rounded-xl text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary transition-colors shadow-sm">
+                      <FileText className="text-[24px]" />
+                    </div>
+                    <span className="font-label-sm text-label-sm text-on-surface-variant px-3 py-1 bg-surface-container rounded-full border border-outline-variant/20 shadow-sm">{pyq.year || 'N/A'}</span>
+                  </div>
+                  <h4 className="font-headline-md text-[22px] leading-tight font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">{pyq.title}</h4>
+                  <p className="font-body-md text-body-md text-on-surface-variant mb-6 text-sm opacity-90">{pyq.subject}</p>
+                  <div className="mt-auto">
+                    {pyq.pdf_url && (
+                      <a href={pyq.pdf_url} target="_blank" rel="noreferrer" className="text-primary text-label-md font-bold hover:underline">View PDF</a>
+                    )}
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="md:col-span-6 lg:col-span-4 tonal-card rounded-2xl p-6 cursor-pointer group">
-              <div className="flex justify-between items-start mb-4">
-                <div className="p-3 bg-surface-container-low rounded-xl text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary transition-colors shadow-sm">
-                  <Ship className="text-[24px]" />
-                </div>
-                <span className="font-label-sm text-label-sm text-on-surface-variant px-3 py-1 bg-surface-container rounded-full border border-outline-variant/20 shadow-sm">2020</span>
-              </div>
-              <h4 className="font-headline-md text-[22px] leading-tight font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">Second Mate Navigational</h4>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-6 text-sm opacity-90">Celestial navigation and passage planning.</p>
-              <div className="mt-auto">
-                <div className="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-2">
-                  <span className="uppercase tracking-wider text-[10px] font-bold">Progress</span>
-                  <span className="text-on-surface-variant font-medium">Not Started</span>
-                </div>
-                <div className="w-full h-2 bg-surface-container rounded-full overflow-hidden shadow-inner">
-                  <div className="h-full bg-primary rounded-full" style={{ width: "0%" }} />
-                </div>
-              </div>
-            </div>
-
-            <div className="md:col-span-6 lg:col-span-4 tonal-card rounded-2xl p-6 cursor-pointer group">
-              <div className="flex justify-between items-start mb-4">
-                <div className="p-3 bg-surface-container-low rounded-xl text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary transition-colors shadow-sm">
-                  <Scale className="text-[24px]" />
-                </div>
-                <span className="font-label-sm text-label-sm text-on-surface-variant px-3 py-1 bg-surface-container rounded-full border border-outline-variant/20 shadow-sm">2019</span>
-              </div>
-              <h4 className="font-headline-md text-[22px] leading-tight font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">Maritime Law &amp; Commercial</h4>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-6 text-sm opacity-90">International conventions and charter parties.</p>
-              <div className="mt-auto">
-                <div className="flex justify-between font-label-sm text-label-sm text-on-surface-variant mb-2">
-                  <span className="uppercase tracking-wider text-[10px] font-bold">Progress</span>
-                  <span className="text-primary font-bold">15% Completed</span>
-                </div>
-                <div className="w-full h-2 bg-surface-container rounded-full overflow-hidden shadow-inner">
-                  <div className="h-full bg-primary rounded-full relative" style={{ width: "15%" }}>
-                    <div className="absolute right-0 top-0 w-2 h-full bg-gradient-to-l from-white/40 to-transparent" />
-                  </div>
-                </div>
-              </div>
-            </div>
+              ))
+            ) : (
+              <div className="md:col-span-12 text-center py-10 text-on-surface-variant">No past year questions found.</div>
+            )}
 
             {/* View More */}
             <div className="md:col-span-12 flex justify-center mt-8">
