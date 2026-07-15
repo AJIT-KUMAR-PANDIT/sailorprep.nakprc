@@ -2,9 +2,11 @@ import { Diamond, Medal, Ship, Pencil, TrendingUp, Sliders, ArrowRight, Award, F
 import { useEffect, useState } from "react";
 import { pb } from "../lib/pb";
 import AuthGuard from "../components/AuthGuard";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function MyProgressScreen() {
   const [progress, setProgress] = useState<any>(null);
+  const { user } = useAuth();
 
   useEffect(() => {
     async function fetchProgress() {
@@ -41,7 +43,7 @@ export default function MyProgressScreen() {
           </div>
         </div>
         <div className="flex-1 text-center md:text-left z-10 flex flex-col justify-center">
-          <h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface font-extrabold mb-2 tracking-tight">Alex Mercer</h2>
+          <h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface font-extrabold mb-2 tracking-tight">{user?.name || 'Alex Mercer'}</h2>
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-4">
             <span className="bg-secondary-container/50 text-on-secondary-container font-label-md px-4 py-1.5 rounded-full border border-secondary/20 shadow-sm backdrop-blur-sm">Cadet</span>
             <span className="bg-surface/50 text-on-surface-variant font-label-md px-4 py-1.5 rounded-full border border-outline-variant/30 flex items-center gap-1.5 shadow-sm backdrop-blur-sm">
