@@ -140,7 +140,7 @@ export default function PdfViewerScreen() {
                 </div>
               }
             >
-              {Array.from(new Array(numPages), (el, index) => (
+              {Array.from(new Array(numPages), (_, index) => (
                 <div key={`page_${index + 1}`} className="mb-8 relative group bg-white rounded-lg">
                   <Page 
                     pageNumber={index + 1} 
