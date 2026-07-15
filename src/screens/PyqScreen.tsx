@@ -59,48 +59,46 @@ export default function PyqScreen() {
           {/* Content Grid */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
             {/* Featured Highlight Card */}
-            <div className="md:col-span-8 tonal-card rounded-2xl overflow-hidden relative group cursor-pointer flex flex-col justify-between p-8 min-h-[320px]">
-              <div className="absolute -right-20 -top-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-700 pointer-events-none" />
-              <div className="relative z-10">
-                <div className="flex justify-between items-start mb-6">
-                  <span className="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-full font-label-sm text-label-sm shadow-sm flex items-center gap-1.5">
-                    <Star className="text-[16px]" style={{ fontVariationSettings: filled }} />
-                    Highly Recommended
-                  </span>
-                  <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors duration-300">
-                    <ArrowUpRight className="text-[20px]" />
+            {pyqs.length > 0 && (
+              <div className="md:col-span-8 tonal-card rounded-2xl overflow-hidden relative group cursor-pointer flex flex-col justify-between p-8 min-h-[320px]">
+                <div className="absolute -right-20 -top-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors duration-700 pointer-events-none" />
+                <div className="relative z-10">
+                  <div className="flex justify-between items-start mb-6">
+                    <span className="bg-primary-container text-on-primary-container px-4 py-1.5 rounded-full font-label-sm text-label-sm shadow-sm flex items-center gap-1.5">
+                      <Star className="text-[16px]" style={{ fontVariationSettings: filled }} />
+                      Highly Recommended
+                    </span>
+                    {(pyqs[0].pdf_file || pyqs[0].pdf_url) && (
+                      <a href={pyqs[0].pdf_file ? pb.files.getUrl(pyqs[0], pyqs[0].pdf_file) : pyqs[0].pdf_url} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors duration-300">
+                        <ArrowUpRight className="text-[20px]" />
+                      </a>
+                    )}
                   </div>
+                  <h2 className="font-headline-lg text-headline-lg-mobile md:text-[36px] leading-tight font-bold text-on-surface mb-3">{pyqs[0].title}</h2>
+                  <p className="font-body-md text-body-lg text-on-surface-variant max-w-lg opacity-90 leading-relaxed">{pyqs[0].subject} - {pyqs[0].year}</p>
                 </div>
-                <h2 className="font-headline-lg text-headline-lg-mobile md:text-[36px] leading-tight font-bold text-on-surface mb-3">2023 Deck Officer Phase 1</h2>
-                <p className="font-body-md text-body-lg text-on-surface-variant max-w-lg opacity-90 leading-relaxed">Comprehensive review of navigation, stability, and maritime law questions from the latest examination cycle.</p>
-              </div>
-              <div className="relative z-10 mt-10">
-                <div className="flex justify-between font-label-md text-label-md text-on-surface-variant mb-3">
-                  <span className="uppercase tracking-wider text-xs font-semibold">Progress</span>
-                  <span className="font-bold text-primary">65% Completed</span>
-                </div>
-                {/* Wave Progress Bar */}
-                <div className="w-full h-3 bg-surface-container rounded-full overflow-hidden relative shadow-inner">
-                  <div className="absolute top-0 left-0 h-full bg-primary rounded-full transition-all duration-1000 ease-out" style={{ width: "65%" }}>
-                    <div className="absolute right-0 top-0 w-8 h-full bg-gradient-to-l from-white/40 to-transparent" />
+                <div className="relative z-10 mt-10">
+                  <div className="flex justify-between font-label-md text-label-md text-on-surface-variant mb-3">
+                    <span className="uppercase tracking-wider text-xs font-semibold">Downloads</span>
+                    <span className="font-bold text-primary">{pyqs[0].downloads || 0}</span>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Stats Card */}
             <div className="md:col-span-4 tonal-card rounded-2xl p-8 flex flex-col justify-center relative overflow-hidden bg-primary text-on-primary shadow-lg border-none">
               <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-bl-full pointer-events-none blur-sm" />
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 rounded-tr-full pointer-events-none blur-sm" />
               <BookOpen className="text-[48px] mb-6 text-primary-fixed" style={{ fontVariationSettings: filled }} />
-              <div className="font-display-lg text-[64px] leading-none mb-2 text-on-primary font-bold">124</div>
-              <div className="font-label-md text-label-md text-primary-fixed mb-8 uppercase tracking-widest font-semibold">Total Questions Solved</div>
+              <div className="font-display-lg text-[64px] leading-none mb-2 text-on-primary font-bold">{pyqs.length}</div>
+              <div className="font-label-md text-label-md text-primary-fixed mb-8 uppercase tracking-widest font-semibold">Total Past Papers</div>
               <div className="h-px w-full bg-white/20 mb-6" />
               <div className="flex justify-between items-center text-on-primary">
-                <span className="font-body-md text-body-md opacity-90">Current Streak</span>
+                <span className="font-body-md text-body-md opacity-90">Ready to Download</span>
                 <div className="flex items-center gap-2 font-headline-md text-headline-md bg-white/10 px-3 py-1 rounded-lg backdrop-blur-sm">
                   <Flame className="text-[28px] text-tertiary-fixed" style={{ fontVariationSettings: filled }} />
-                  12 Days
+                  Now
                 </div>
               </div>
             </div>
@@ -164,6 +162,9 @@ export default function PyqScreen() {
           </button>
           <Link to="/study-notes" className="flex flex-col items-center text-on-surface-variant hover:text-primary transition-colors p-2 rounded-lg hover:bg-surface-container-low" title="Notes">
             <Bookmark className="text-[20px]" />
+          </Link>
+          <Link to="/interview-prep" className="flex flex-col items-center text-on-surface-variant hover:text-primary transition-colors p-2 rounded-lg hover:bg-surface-container-low" title="Interview">
+            <BookOpen className="text-[20px]" />
           </Link>
           <div className="flex-grow" />
           <Link to="/my-progress" className="flex flex-col items-center text-on-surface-variant hover:text-primary transition-colors p-2 rounded-lg hover:bg-surface-container-low" title="Profile">

@@ -47,7 +47,7 @@ export default function InterviewPrepScreen() {
               <p className="font-body-md text-body-md text-on-surface-variant max-w-2xl mb-8 leading-relaxed">Master the critical scenarios required for maritime certification. Practice articulating procedures for Port State Control, emergencies, and cargo operations to ensure confidence and compliance.</p>
               <div className="flex flex-wrap gap-3">
                 <span className="bg-secondary-container/60 text-on-secondary-container px-4 py-2 rounded-lg font-label-sm text-label-sm inline-flex items-center gap-1.5 border border-secondary-container">
-                  <BadgeCheck className="text-[18px]" /> 45 Scenarios
+                  <BadgeCheck className="text-[18px]" /> {preps.length} Scenarios
                 </span>
                 <span className="bg-surface-container-low text-on-surface-variant px-4 py-2 rounded-lg font-label-sm text-label-sm inline-flex items-center gap-1.5 border border-surface-variant">
                   <Timer className="text-[18px]" /> 2h 30m avg

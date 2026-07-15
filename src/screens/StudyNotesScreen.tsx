@@ -5,8 +5,25 @@ import AuthGuard from "../components/AuthGuard";
 
 export default function StudyNotesScreen() {
   const [notes, setNotes] = useState<any[]>([]);
-  const [currentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+
+  const nextCard = () => {
+    setCurrentIndex((prev) => (prev + 1) % notes.length);
+    // Reset flip if possible (the flip logic seems to be CSS based on a class maybe? or maybe just updating index is enough to re-render)
+    const flashcard = document.getElementById('flashcard');
+    if (flashcard) {
+      flashcard.classList.remove('is-flipped'); // Just in case it has a toggle class
+      // actually the ui uses hover or click to flip based on some css. 
+      // If it's pure CSS hover, changing the card will just render the new text.
+    }
+    // Also reset controls area
+    const controls = document.getElementById('controls-area');
+    if (controls) {
+      controls.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      controls.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+    }
+  };
 
   useEffect(() => {
     async function fetchNotes() {
@@ -38,7 +55,7 @@ export default function StudyNotesScreen() {
               <>
                 <span className="glass-panel text-primary px-4 py-1.5 rounded-full font-label-md text-label-md mb-3 inline-flex items-center gap-1.5 shadow-sm border border-primary/20">
                   <Ship className="text-[16px]" />
-                  {currentNote.topic || "Topic"}
+                  {currentNote.category || "Topic"}
                 </span>
                 <h2 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-1 tracking-tight">{currentNote.title || "Note Title"}</h2>
                 <div className="flex items-center gap-3 w-full max-w-xs mx-auto mt-3">
@@ -93,20 +110,21 @@ export default function StudyNotesScreen() {
           )}
 
           {/* Controls (shown after flip) */}
-          <div className="w-full max-w-md mx-auto grid grid-cols-3 gap-4 opacity-0 translate-y-4 pointer-events-none transition-all duration-500 ease-out" id="controls-area">
-            <button className="glass-panel text-on-surface-variant py-4 rounded-2xl font-label-md text-label-md hover:bg-white/80 transition-all flex flex-col items-center justify-center gap-2 active:scale-95 shadow-sm border border-outline-variant/20">
+          {/* Note: since there's no JS flip logic here yet, we'll just make these buttons always visible or add an onClick to flip. For now, let's just make them visible so users can advance */}
+          <div className="w-full max-w-md mx-auto grid grid-cols-3 gap-4 transition-all duration-500 ease-out mt-4" id="controls-area">
+            <button onClick={nextCard} className="glass-panel text-on-surface-variant py-4 rounded-2xl font-label-md text-label-md hover:bg-white/80 transition-all flex flex-col items-center justify-center gap-2 active:scale-95 shadow-sm border border-outline-variant/20">
               <div className="w-10 h-10 rounded-full bg-error/10 flex items-center justify-center mb-1">
                 <Frown className="text-error text-[24px]" />
               </div>
               Hard
             </button>
-            <button className="bg-primary text-on-primary py-4 rounded-2xl font-label-md text-label-md hover:bg-primary/90 transition-all flex flex-col items-center justify-center gap-2 active:scale-95 shadow-lg shadow-primary/30 border border-primary/20">
+            <button onClick={nextCard} className="bg-primary text-on-primary py-4 rounded-2xl font-label-md text-label-md hover:bg-primary/90 transition-all flex flex-col items-center justify-center gap-2 active:scale-95 shadow-lg shadow-primary/30 border border-primary/20">
               <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mb-1">
                 <Smile className="text-white text-[24px]" />
               </div>
               Good
             </button>
-            <button className="glass-panel text-on-surface-variant py-4 rounded-2xl font-label-md text-label-md hover:bg-white/80 transition-all flex flex-col items-center justify-center gap-2 active:scale-95 shadow-sm border border-outline-variant/20">
+            <button onClick={nextCard} className="glass-panel text-on-surface-variant py-4 rounded-2xl font-label-md text-label-md hover:bg-white/80 transition-all flex flex-col items-center justify-center gap-2 active:scale-95 shadow-sm border border-outline-variant/20">
               <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-1">
                 <Heart className="text-primary text-[24px]" />
               </div>
@@ -130,6 +148,9 @@ export default function StudyNotesScreen() {
             </a>
             <a href="/study-notes" className="flex items-center gap-3 px-4 py-3 rounded-xl text-primary font-bold bg-primary/10 transition-colors font-label-md text-label-md">
               <BookmarkIcon className="text-[20px]" style={{ fontVariationSettings: filled }} /> Notes
+            </a>
+            <a href="/interview-prep" className="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md">
+              <BookOpen className="text-[20px]" /> Interview
             </a>
             <a href="/my-progress" className="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md">
               <User className="text-[20px]" /> Profile

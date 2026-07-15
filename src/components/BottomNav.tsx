@@ -46,6 +46,14 @@ export default function BottomNav() {
           </>
         )}
       </NavLink>
+      <NavLink className={getNavClass} to="/interview-prep">
+        {({ isActive }) => (
+          <>
+            <BookOpen className="mb-1" style={getIconStyle({ isActive })} />
+            <span className="font-label-sm text-[10px] font-medium">Interview</span>
+          </>
+        )}
+      </NavLink>
       <NavLink className={getNavClass} to="/my-progress">
         {({ isActive }) => (
           <>
