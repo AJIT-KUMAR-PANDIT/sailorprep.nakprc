@@ -126,9 +126,11 @@ export default function PyqScreen() {
                   <h4 className="font-headline-md text-[22px] leading-tight font-bold text-on-surface mb-2 group-hover:text-primary transition-colors">{pyq.title}</h4>
                   <p className="font-body-md text-body-md text-on-surface-variant mb-6 text-sm opacity-90">{pyq.subject}</p>
                   <div className="mt-auto">
-                    {pyq.pdf_url && (
+                    {(pyq.pdf_file || pyq.pdf_url) && (
                       <AuthGuard>
-                        <a href={pyq.pdf_url} target="_blank" rel="noreferrer" className="text-primary text-label-md font-bold hover:underline">View PDF</a>
+                        <a href={pyq.pdf_file ? pb.files.getUrl(pyq, pyq.pdf_file) : pyq.pdf_url} target="_blank" rel="noreferrer" className="text-primary text-label-md font-bold hover:underline inline-flex items-center gap-1">
+                          <ArrowUpRight className="text-[16px]" /> View PDF
+                        </a>
                       </AuthGuard>
                     )}
                   </div>
