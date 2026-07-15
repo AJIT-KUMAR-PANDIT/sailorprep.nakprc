@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">sailorprep</string>
+    <string name="title_activity_main">sailorprep</string>
+    <string name="package_name">com.sailorprep.app</string>
+    <string name="custom_url_scheme">com.sailorprep.app</string>
+</resources>
