@@ -69,9 +69,9 @@ export default function PyqScreen() {
                       Highly Recommended
                     </span>
                     {(pyqs[0].pdf_file || pyqs[0].pdf_url) && (
-                      <a href={pyqs[0].pdf_file ? pb.files.getUrl(pyqs[0], pyqs[0].pdf_file) : pyqs[0].pdf_url} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors duration-300">
+                      <Link to={`/pdf-viewer/${pyqs[0].id}`} className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary group-hover:text-on-primary transition-colors duration-300">
                         <ArrowUpRight className="text-[20px]" />
-                      </a>
+                      </Link>
                     )}
                   </div>
                   <h2 className="font-headline-lg text-headline-lg-mobile md:text-[36px] leading-tight font-bold text-on-surface mb-3">{pyqs[0].title}</h2>
@@ -126,9 +126,9 @@ export default function PyqScreen() {
                   <div className="mt-auto">
                     {(pyq.pdf_file || pyq.pdf_url) && (
                       <AuthGuard>
-                        <a href={pyq.pdf_file ? pb.files.getUrl(pyq, pyq.pdf_file) : pyq.pdf_url} target="_blank" rel="noreferrer" className="text-primary text-label-md font-bold hover:underline inline-flex items-center gap-1">
+                        <Link to={`/pdf-viewer/${pyq.id}`} className="text-primary text-label-md font-bold hover:underline inline-flex items-center gap-1">
                           <ArrowUpRight className="text-[16px]" /> View PDF
-                        </a>
+                        </Link>
                       </AuthGuard>
                     )}
                   </div>

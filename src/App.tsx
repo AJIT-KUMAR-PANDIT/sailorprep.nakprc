@@ -8,6 +8,7 @@ import MyProgressScreen from './screens/MyProgressScreen';
 import PyqScreen from './screens/PyqScreen';
 import StudyNotesScreen from './screens/StudyNotesScreen';
 import AuthScreen from './screens/AuthScreen';
+import PdfViewerScreen from './screens/PdfViewerScreen';
 import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
@@ -29,6 +30,9 @@ function App() {
           <Route path="/pyq" element={<PyqScreen />} />
           <Route path="/study-notes" element={<StudyNotesScreen />} />
         </Route>
+        
+        {/* PDF Viewer without main layout (takes up full screen) */}
+        <Route path="/pdf-viewer/:pyqId" element={<PdfViewerScreen />} />
       </Routes>
     </BrowserRouter>
     </AuthProvider>
